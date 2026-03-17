@@ -37,7 +37,7 @@ Existe también una sintaxis `.sass`, más compacta y basada en indentación, pe
 
 Por ejemplo, este fragmento sigue siendo muy parecido a CSS:
 
-```
+```scss
 $color-principal: #2f6b2f;
 
 .boton {
@@ -58,7 +58,7 @@ En un flujo simple de aprendizaje, alcanza con compilar un archivo `estilos.scss
 
 Lo importante es entender el recorrido:
 
-```
+```text
 estilos.scss -> compilacion -> estilos.css -> navegador
 ```
 
@@ -70,7 +70,7 @@ Las variables son uno de los usos más claros de SASS. Permiten guardar valores 
 
 Ejemplo:
 
-```
+```scss
 $color-primario: #2f6b2f;
 $color-secundario: #f7f4ea;
 $radio-base: 8px;
@@ -131,7 +131,7 @@ Los archivos parciales suelen comenzar con guion bajo porque no están pensados 
 
 En la sintaxis moderna de SASS se recomienda usar `@use` para importar módulos:
 
-```
+```scss
 @use 'variables';
 @use 'components';
 ```
@@ -144,7 +144,7 @@ Los mixins permiten definir bloques reutilizables de reglas CSS, incluso con par
 
 Ejemplo:
 
-```
+```scss
 @mixin boton-base($fondo, $texto) {
 background-color: $fondo;
 color: $texto;
@@ -154,13 +154,13 @@ border-radius: 8px;
 }
 ```
 
-```
+```scss
 .boton-primario {
 @include boton-base(#2f6b2f, white);
 }
 ```
 
-```
+```scss
 .boton-secundario {
 @include boton-base(#d9d3c3, #222);
 }

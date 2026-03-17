@@ -26,7 +26,8 @@ CSS puede integrarse a un documento HTML de tres formas principales: en línea, 
 **Estilo en línea:** Se aplica directamente al elemento HTML mediante el atributo `style`. Es útil para pruebas rápidas o estilos puntuales, pero no conviene como estrategia principal en proyectos grandes.
 
 ```html
-<p style="color: red; font-weight: bold;">Este texto es rojo y en negrita.</p>
+<p style="color: red; font-weight: bold;">Este texto es rojo y en
+negrita.</p>
 ```
 
 **Estilo interno:** Se incluye dentro de una etiqueta `<style>` en el `<head>` del documento HTML. Es útil para páginas pequeñas o cuando se desea mantener todo en un solo archivo.
@@ -41,7 +42,7 @@ h1 { color: blue; text-align: center; }
 
 **Estilo externo:** Se vincula un archivo `.css` mediante la etiqueta `<link>` en el `<head>` del documento. Es la forma más recomendable para mantener un código limpio y reutilizable.
 
-```
+```html
 <head>
 <link rel="stylesheet" href="estilos.css">
 </head>
@@ -55,7 +56,7 @@ Escribir CSS mantenible es clave para que un proyecto web pueda crecer sin volve
 
 **Ejemplo de un código difícil de mantener**
 
-```
+```css
 .red-text-bold-16 {
 color: red; font-weight: bold;
 font-size: 16px;
@@ -66,7 +67,7 @@ Este nombre mezcla estilos específicos y no se entiende qué representa semánt
 
 **Ejemplo de código bien pensado y fácil de mantener**
 
-```
+```css
 .alert-message {
 color: red;
 font-weight: bold; font-size: 1rem;
@@ -91,7 +92,7 @@ BEM propone una convención de nombres clara y estructurada que permite escribir
 
 **Ejemplo en HTML y CSS**
 
-```
+```html
 <div class="tarjeta tarjeta--destacada">
 <h2 class="tarjeta__titulo">Curso de CSS</h2>
 <p class="tarjeta__descripcion">
@@ -100,28 +101,28 @@ Aprendé a diseñar sitios web modernos.
 </div>
 ```
 
-```
+```css
 .tarjeta {
 border: 1px solid #ccc;
 padding: 1rem;
 }
 ```
 
-```
+```css
 .tarjeta--destacada {
 border-color: #0066cc;
 background-color: #f0f8ff;
 }
 ```
 
-```
+```css
 .tarjeta__titulo {
 font-size: 1.5rem;
 margin-bottom: 0.5rem;
 }
 ```
 
-```
+```css
 .tarjeta__descripcion {
 color: #555;
 }
@@ -135,7 +136,7 @@ CSS funciona a través de reglas que se aplican a los elementos HTML. Cada regla
 
 Por ejemplo, si se busca que todos los títulos `<h1>` de un documento HTML sean azules, se puede definir así:
 
-```
+```css
 h1 {
 color: blue;
 }
@@ -157,7 +158,7 @@ Antes de avanzar, conviene recordar una idea práctica: cuanto más claro sea el
 
 Este selector vincula directamente una etiqueta HTML. Se aplica a todos los elementos del mismo tipo.
 
-```
+```css
 p {
 font-size: 16px;
 line-height: 1.5;
@@ -170,17 +171,18 @@ Este ejemplo aplica estilos a todos los párrafos `<p>` del documento. Es útil 
 
 El selector de clase utiliza un punto seguido de un texto que el desarrollador define, y que deberá coincidir con el valor del atributo class de los elementos HTML que se quiera afectar.
 
-```
+```css
 .destacado {
 background-color: yellow;
 font-weight: bold;
 }
 ```
 
-```
+```html
 <p class="destacado">Este párrafo está destacado.</p>
 
-<p> Este párrafo no está destacado, <span class="destacado">pero este elemento dentro del párrafo</span>, sí.</p>
+<p> Este párrafo no está destacado, <span class="destacado">pero este
+elemento dentro del párrafo</span>, sí.</p>
 ```
 
 Las clases permiten reutilizar estilos en diferentes partes del sitio. Un mismo elemento HTML puede tener múltiples clases.
@@ -191,14 +193,14 @@ Usa el símbolo `#` seguido del valor del atributo `id` de los elementos HTML qu
 
 **Nota:** debido al funcionamiento de HTML, que es un lenguaje no restrictivo, si hubiera más de un elemento con un mismo ID en el documento, la página seguirá funcionando igual y CSS seleccionará los dos elementos en el HTML (aunque es un tipo de situaciones que deberían evitarse, muchas veces ocurren).
 
-```
+```css
 #encabezado-principal {
 font-size: 2rem;
 text-align: center;
 }
 ```
 
-```
+```html
 <h1 id="encabezado-principal">Bienvenidos</h1>
 ```
 
@@ -208,7 +210,7 @@ Los selectores por ID son más específicos, pero se recomienda usarlos con mode
 
 Este tipo de selector apunta a elementos que contienen un atributo específico o un valor determinado. Son mucho menos comunes de usar, pero muy importantes en algunos casos.
 
-```
+```text
 input[type="email"] {
 border: 1px solid #00f;
 }
@@ -224,7 +226,7 @@ Además de los selectores básicos, CSS ofrece más herramientas para aplicar es
 
 Las pseudoclases permiten aplicar estilos a un elemento cuando se encuentra en un estado particular o en una posición dentro del documento. Se escriben con dos puntos seguido del nombre del estado sobre el que se definirá el estilo (la pseudoclase).
 
-```
+```text
 a:hover {
 color: red;
 }
@@ -234,7 +236,7 @@ Esta regla cambia el color de los enlaces cuando el usuario pasa el cursor sobre
 
 Otro caso frecuente:
 
-```
+```text
 li:first-child {
 font-weight: bold;
 }
@@ -247,34 +249,44 @@ Existen muchísimas pseudoclases, en la documentación de la fundación Mozilla,
 
 A continuación se resumen las más comunes:
 
-```
+```text
 :hover
-Se activa cuando el usuario pasa el cursor sobre un elemento. Muy utilizada para mejorar la interactividad, por ejemplo, en botones y enlaces.
+Se activa cuando el usuario pasa el cursor sobre un elemento. Muy
+utilizada para mejorar la interactividad, por ejemplo, en botones y
+enlaces.
 
 :active
-Se aplica mientras el elemento está siendo activado, por ejemplo, el tiempo en que se presiona un botón.
+Se aplica mientras el elemento está siendo activado, por ejemplo, el
+tiempo en que se presiona un botón.
 
 :focus
-Se dispara cuando un elemento (como un input o un enlace) recibe el foco, permitiendo mejorar la accesibilidad y la experiencia del usuario en formularios y navegaciones mediante teclado.
+Se dispara cuando un elemento (como un input o un enlace) recibe el
+foco, permitiendo mejorar la accesibilidad y la experiencia del
+usuario en formularios y navegaciones mediante teclado.
 
 :first-child
-Selecciona el primer hijo de un elemento contenedor. Es útil para aplicar estilos diferenciados al primer elemento de una lista o sección.
+Selecciona el primer hijo de un elemento contenedor. Es útil para
+aplicar estilos diferenciados al primer elemento de una lista o
+sección.
 
 :last-child
-Similar a :first-child, este selector apunta al último hijo del contenedor, permitiendo ajustar estilos de cierre o final.
+Similar a :first-child, este selector apunta al último hijo del
+contenedor, permitiendo ajustar estilos de cierre o final.
 
 :checked
-Muy útil en formularios, permite estilizar elementos como casillas de verificación y botones de radio cuando están seleccionados.
+Muy útil en formularios, permite estilizar elementos como casillas de
+verificación y botones de radio cuando están seleccionados.
 
 :disabled
-Aplica estilos a elementos que están deshabilitados, por ejemplo, campos de formulario o botones que no deben interactuarse.
+Aplica estilos a elementos que están deshabilitados, por ejemplo,
+campos de formulario o botones que no deben interactuarse.
 ```
 
 **Pseudoelementos**
 
 Los pseudoelementos permiten aplicar estilos a partes específicas de un elemento. Se escriben con doble dos puntos seguidos del nombre del pseudoelemento.
 
-```
+```text
 p::first-line {
 text-transform: uppercase;
 }
@@ -282,7 +294,7 @@ text-transform: uppercase;
 
 Esta regla convierte en mayúsculas solo la primera línea de cada párrafo.
 
-```
+```text
 p::before {
 content: "→ ";
 color: gray;
@@ -300,7 +312,7 @@ La razón por la que CSS se llama Hojas de Estilo en Cascada (Cascading Style Sh
 
 En el siguiente ejemplo ¿de qué color se verá el texto del párrafo definido en el HTML?
 
-```
+```css
 .azul { color: blue; }
 p { color: red; }
 ```
@@ -337,7 +349,7 @@ Se calcula con un sistema de puntos que puede resumirse así:
 
 **Ejemplo 1: conflicto de estilos**
 
-```
+```css
 p { color: blue; }
 .verde { color: green; }
 #principal { color: red; }
@@ -351,7 +363,7 @@ Aunque hay tres reglas que podrían aplicarse, gana `#principal` porque el selec
 
 **Ejemplo 2: misma especificidad**
 
-```
+```css
 .titulo { font-size: 20px; }
 .titulo { font-size: 24px; }
 ```
@@ -376,20 +388,20 @@ Es especialmente útil cuando se trabaja con componentes o estructuras anidadas 
 
 En el ejemplo, `<h1>` y `<p>` tendrán tipografía "Segoe UI", pero `<p>` tendrá color negro, mientras que `<h1>` será rojo.
 
-```
+```css
 body {
 font-family: 'Segoe UI', sans-serif;
 color: black;
 }
 ```
 
-```
+```css
 h1 {
 color: red;
 }
 ```
 
-```
+```html
 <body>
 <main>
 <article>
@@ -443,7 +455,7 @@ Una forma simple de pensarlo es la siguiente:
 
 Por ejemplo:
 
-```
+```css
 div {
 width: 300px;
 padding: 20px;
@@ -467,7 +479,7 @@ Algunos valores muy usados son:
 
 Por ejemplo:
 
-```
+```css
 .etiqueta {
 display: inline-block;
 padding: 0.5rem 1rem;
@@ -485,7 +497,7 @@ Por defecto, CSS utiliza el valor `content-box`, lo que significa que el ancho y
 
 Para evitar cálculos innecesarios y lograr diseños más predecibles, es común usar:
 
-```
+```text
 * {
 box-sizing: border-box;
 }
@@ -508,7 +520,7 @@ Sus valores más frecuentes son:
 
 Por ejemplo:
 
-```
+```css
 .descripcion {
 max-height: 120px;
 overflow: auto;
@@ -537,7 +549,7 @@ La propiedad `position` permite alterar el lugar que ocupa un elemento o la form
 
 Ejemplo:
 
-```
+```css
 .boton-flotante {
 position: fixed;
 bottom: 20px;
@@ -555,7 +567,7 @@ Antes de la aparición de Flexbox y Grid, `float` fue una de las herramientas m�
 
 Por ejemplo:
 
-```
+```css
 .imagen-miniatura {
 float: left;
 margin-right: 1rem;
@@ -570,7 +582,7 @@ Flexbox es un sistema de distribución pensado para organizar elementos en una s
 
 Para activarlo se define `display: flex` sobre un contenedor:
 
-```
+```css
 .menu {
 display: flex;
 justify-content: space-between;
@@ -593,7 +605,7 @@ En los hijos pueden usarse propiedades como `flex-grow`, `flex-shrink` y `flex-b
 
 Ejemplo simple:
 
-```
+```css
 .productos {
 display: flex;
 flex-wrap: wrap;
@@ -601,7 +613,7 @@ gap: 1rem;
 }
 ```
 
-```
+```css
 .producto {
 flex: 1 1 250px;
 }
@@ -620,7 +632,7 @@ Si `flex-direction` vale `row`, el eje principal es horizontal. Si vale `column`
 
 Por ejemplo:
 
-```
+```css
 .panel {
 display: flex;
 flex-direction: column;
@@ -643,7 +655,7 @@ Además de las propiedades del contenedor, Flexbox ofrece herramientas para cont
 
 Por ejemplo:
 
-```
+```css
 .barra {
 display: flex;
 gap: 1rem;
@@ -670,7 +682,7 @@ La notación abreviada `flex` suele resultar confusa al principio porque condens
 
 Por eso, cuando se escribe:
 
-```
+```css
 .producto {
 flex: 1 1 250px;
 }
@@ -686,7 +698,7 @@ Este detalle es importante porque `flex-basis` no es exactamente lo mismo que `w
 
 También conviene prestar atención a `flex-shrink`. Si no se controla, algunos elementos pueden comprimirse más de lo deseado cuando el espacio escasea. Por eso, en componentes como botones, logos o bloques con texto breve, a veces conviene impedir esa reducción:
 
-```
+```css
 .logo {
 flex: 0 0 auto;
 }
@@ -700,7 +712,7 @@ Aquí el logo no crece, no se achica y conserva un tamaño gobernado por su cont
 
 Esta propiedad distribuye el conjunto de líneas dentro del contenedor, no los ítems individuales. Solo tiene efecto cuando hay más de una línea.
 
-```
+```css
 .galeria {
 display: flex;
 flex-wrap: wrap;
@@ -721,7 +733,7 @@ Una distinción útil es esta:
 
 Flexbox también permite cambiar visualmente el orden de los elementos mediante `order`.
 
-```
+```css
 .destacado {
 order: -1;
 }
@@ -740,7 +752,7 @@ Flexbox aparece mucho en problemas pequeños pero muy habituales:
 
 Un patrón clásico es empujar un elemento hacia el extremo contrario con `margin-left: auto`:
 
-```
+```css
 .nav {
 display: flex;
 align-items: center;
@@ -762,7 +774,7 @@ CSS Grid está pensado para trabajar en dos dimensiones: filas y columnas al mis
 
 Por ejemplo:
 
-```
+```css
 .layout {
 display: grid;
 grid-template-columns: 240px 1fr;
@@ -774,7 +786,7 @@ Aquí se construye un diseño con dos columnas: una más estrecha, útil para un
 
 También pueden definirse varias columnas repetidas:
 
-```
+```css
 .galeria {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -790,7 +802,7 @@ Una de las mayores ventajas de Grid es que permite definir columnas que se adapt
 
 Por ejemplo:
 
-```
+```css
 .galeria {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -822,7 +834,7 @@ No siempre se percibe la diferencia a simple vista, pero entenderla ayuda a eleg
 
 En Grid no solo importa cuántas columnas existen, sino también dónde se ubica cada elemento.
 
-```
+```css
 .dashboard {
 display: grid;
 grid-template-columns: 240px 1fr;
@@ -844,7 +856,7 @@ Este enfoque permite describir con bastante claridad qué ocupa cada zona. A dif
 
 También es frecuente que un elemento deba ocupar más de una columna o más de una fila. Para eso puede usarse la palabra clave `span`:
 
-```
+```css
 .resumen {
 grid-column: span 2;
 }
@@ -858,7 +870,7 @@ Cuando definimos `grid-template-columns` o `grid-template-rows`, estamos creando
 
 Ese comportamiento forma parte de la grilla implícita.
 
-```
+```css
 .listado {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -876,7 +888,7 @@ También existen:
 
 Por ejemplo:
 
-```
+```css
 .paneles {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -891,7 +903,7 @@ Con `grid-auto-flow: row`, el navegador llena la grilla por filas, que es el com
 
 Cuando el layout tiene regiones muy claras, `grid-template-areas` puede volver el CSS mucho más expresivo.
 
-```
+```css
 .pagina {
 display: grid;
 grid-template-columns: 240px 1fr;
@@ -914,7 +926,7 @@ No siempre hace falta usar áreas nombradas, pero pueden ser muy convenientes en
 
 Además de ubicar elementos, Grid permite controlar cómo se alinean dentro de sus celdas y cómo se distribuye la grilla completa en el espacio disponible.
 
-```
+```css
 .metricas {
 display: grid;
 grid-template-columns: repeat(3, 1fr);
@@ -933,7 +945,7 @@ Grid resulta especialmente útil cuando hace falta combinar estructura general y
 
 Un caso común es el de dashboards o paneles donde algunas tarjetas ocupan más espacio que otras:
 
-```
+```css
 .dashboard-resumen {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
@@ -947,7 +959,7 @@ grid-column: span 2;
 
 Otro patrón muy frecuente es el de galerías o listados de productos que deben responder al ancho disponible sin depender de demasiados puntos de quiebre:
 
-```
+```css
 .catalogo {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -996,7 +1008,7 @@ Las media queries permiten aplicar reglas de CSS solo cuando se cumplen ciertas 
 
 Por ejemplo:
 
-```
+```css
 @media (max-width: 800px) {
 .productos {
 grid-template-columns: 1fr;
@@ -1027,14 +1039,14 @@ Trabajar con enfoque mobile first significa comenzar diseñando para pantallas p
 
 Por ejemplo, se puede partir de una sola columna y luego agregar complejidad mediante media queries:
 
-```
+```css
 .contenedor {
 display: grid;
 grid-template-columns: 1fr;
 }
 ```
 
-```
+```css
 @media (min-width: 900px) {
 .contenedor {
 grid-template-columns: 1fr 1fr;
@@ -1062,7 +1074,7 @@ Los pseudo-elementos `::before` y `::after` permiten insertar contenido decorati
 
 Ejemplo:
 
-```
+```text
 .precio::before {
 content: "$";
 color: #2f6b2f;
@@ -1078,14 +1090,14 @@ Las variables de CSS, también llamadas custom properties, permiten definir valo
 
 Ejemplo:
 
-```
+```text
 :root {
 --color-primario: #2f6b2f;
 --color-secundario: #f7f4ea;
 }
 ```
 
-```
+```css
 .boton {
 background-color: var(--color-primario);
 color: white;
@@ -1100,13 +1112,13 @@ Las transiciones permiten suavizar cambios entre estados visuales. Son muy útil
 
 Ejemplo:
 
-```
+```css
 .boton {
 transition: background-color 0.3s ease, transform 0.3s ease;
 }
 ```
 
-```
+```text
 .boton:hover {
 background-color: #245224;
 transform: translateY(-2px);
@@ -1121,7 +1133,7 @@ CSS permite aplicar filtros sobre imágenes u otros elementos visuales con propi
 
 Ejemplo:
 
-```
+```css
 .imagen-deshabilitada {
 filter: grayscale(100%);
 }
@@ -1135,7 +1147,7 @@ Las sombras y degradados son recursos clásicos para agregar profundidad y contr
 
 Por ejemplo:
 
-```
+```css
 .tarjeta {
 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 background: linear-gradient(180deg, #ffffff, #f7f7f7);

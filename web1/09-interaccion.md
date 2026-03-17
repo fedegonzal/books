@@ -186,7 +186,7 @@ Cuando una interacción genera contenido nuevo, las template strings ayudan a co
 
 Por ejemplo:
 
-```
+```js
 function plantillaProducto(producto) {
   return `
     <article class="producto">
@@ -209,7 +209,7 @@ Para cerrar el libro, este módulo puede aplicarse al proyecto del supermercado 
 
 La primera es agregar una búsqueda simple sobre el listado de productos:
 
-```
+```js
 const inputBusqueda = document.querySelector('#busqueda');
 const items = document.querySelectorAll('.producto');
 
@@ -225,7 +225,7 @@ inputBusqueda.addEventListener('input', (event) => {
 
 La segunda es interceptar el formulario de carga para validar campos y mostrar una confirmación en pantalla antes de cualquier envío real:
 
-```
+```js
 const formulario = document.querySelector('#form-producto');
 const estado = document.querySelector('#estado-envio');
 

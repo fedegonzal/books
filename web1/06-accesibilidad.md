@@ -77,7 +77,7 @@ En los formularios, cada campo debería tener su `label` asociado. El `placehold
 
 Un ejemplo simple sería:
 
-```
+```html
 <label for="precio">Precio</label>
 <input id="precio" name="precio" type="number">
 ```
@@ -97,7 +97,7 @@ Algunas reglas prácticas importantes son:
 
 Una mala práctica común es escribir algo como esto:
 
-```
+```css
 .boton:focus {
   outline: none;
 }
@@ -105,7 +105,7 @@ Una mala práctica común es escribir algo como esto:
 
 Si se elimina el foco por razones visuales, hay que reemplazarlo por otra señal clara. Por ejemplo:
 
-```
+```css
 .boton:focus-visible {
   outline: 3px solid #1f6feb;
   outline-offset: 2px;
@@ -141,7 +141,7 @@ Pensado así, responsive design deja de ser una colección de breakpoints y pasa
 
 Una de las primeras decisiones para trabajar diseño adaptable es incluir correctamente la etiqueta viewport:
 
-```
+```html
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
@@ -149,7 +149,7 @@ Esa configuración ayuda a que el navegador interprete el ancho de la pantalla d
 
 Las media queries permiten ajustar el diseño cuando cambian ciertas condiciones, especialmente el ancho disponible. Por ejemplo:
 
-```
+```css
 .productos {
   display: grid;
   grid-template-columns: 1fr;
@@ -157,7 +157,7 @@ Las media queries permiten ajustar el diseño cuando cambian ciertas condiciones
 }
 ```
 
-```
+```css
 @media (min-width: 768px) {
   .productos {
     grid-template-columns: repeat(2, 1fr);
@@ -165,7 +165,7 @@ Las media queries permiten ajustar el diseño cuando cambian ciertas condiciones
 }
 ```
 
-```
+```text
 @media (min-width: 1024px) {
   .productos {
     grid-template-columns: repeat(3, 1fr);
@@ -181,7 +181,7 @@ Para que un diseño responda bien, no alcanza con escribir media queries. Los co
 
 En imágenes y multimedia, una regla muy habitual es:
 
-```
+```css
 img, video {
   max-width: 100%;
   height: auto;

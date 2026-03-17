@@ -76,7 +76,8 @@ Un ejemplo más completo de `head` podría verse así:
   <meta name="author" content="Nombre del autor">
   <meta name="robots" content="index, follow">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,
+  initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
   <style>
@@ -120,7 +121,8 @@ separar el texto y hacerlo más legible.</p>
 La etiqueta `<a>` se utiliza para crear enlaces. El atributo más importante es `href`, que especifica la URL o el recurso de destino. También puede incluir atributos como `target`, que define si el enlace se abre en la misma ventana o en una nueva. Es fundamental para la navegación en la web, ya que permite pasar de una página a otra.
 
 ```html
-<a href="https://www.example.com" target="_blank">Visita nuestro sitio</a>
+<a href="https://www.example.com" target="_blank">Visita nuestro
+sitio</a>
 ```
 
 ### Listas
@@ -197,13 +199,15 @@ La etiqueta `<strong>` se usa para marcar un texto como especialmente importante
 La etiqueta `<em>` también se utiliza para enfatizar texto, normalmente con cursiva. Igual que `<strong>`, aporta significado además del efecto visual.
 
 ```html
-<p>Este es un <em>mensaje enfatizado</em> para dar énfasis en su importancia.</p>
+<p>Este es un <em>mensaje enfatizado</em> para dar énfasis en su
+importancia.</p>
 ```
 
 La etiqueta `<br>` se utiliza para insertar un salto de línea dentro de un texto o párrafo sin crear un nuevo bloque de contenido. La etiqueta `<hr>` se usa para insertar una separación temática entre secciones de contenido.
 
 ```html
-<p>Esta es una dirección:<br> Calle Ficticia 123<br> Ciudad Imaginaria</p>
+<p>Esta es una dirección:<br> Calle Ficticia 123<br> Ciudad
+Imaginaria</p>
 
 <p>Sección 1</p>
 <hr>
@@ -250,7 +254,8 @@ La etiqueta `<audio>` permite incrustar archivos de audio. Al igual que con `<vi
 La etiqueta `<iframe>` se utiliza para incrustar un documento HTML dentro de otro, por ejemplo un video de YouTube o un mapa. La etiqueta `<picture>` sirve para mostrar distintas imágenes según el contexto del dispositivo.
 
 ```html
-<iframe src="https://www.youtube.com/embed/jMitTWFZHsc" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/jMitTWFZHsc" width="560"
+height="315" frameborder="0" allowfullscreen></iframe>
 
 <picture>
   <source srcset="big.jpg" media="(min-width: 800px)">
@@ -291,7 +296,8 @@ La etiqueta `<div>` es un contenedor genérico que se utiliza para agrupar otros
 La etiqueta `<span>` es similar a `<div>`, pero se utiliza para agrupar contenido en línea sin romper el flujo del texto.
 
 ```html
-<p>Este es un <span class="resaltado">texto destacado</span> en una oración.</p>
+<p>Este es un <span class="resaltado">texto destacado</span> en una
+oración.</p>
 ```
 
 ## Etiquetas de estructura con semántica
@@ -364,7 +370,8 @@ A continuación se muestra un ejemplo de un código sencillo, utilizando etiquet
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,
+  initial-scale=1.0">
   <title>Mi Sitio de Videos</title>
 </head>
 <body>
@@ -402,7 +409,8 @@ En este ejemplo aparece `aria-label` para describir mejor la sección. Los atrib
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,
+  initial-scale=1.0">
   <title>Ver Video - Mi Sitio de Videos</title>
 </head>
 <body>
@@ -481,7 +489,8 @@ En formularios reales, `submit` suele ser el caso principal. Los otros tipos con
 La etiqueta `<textarea>` se utiliza para campos de texto de varias líneas, como un comentario o la descripción de un contenido. El atributo `name` es muy importante porque es el nombre con el que el servidor recibirá esa información.
 
 ```html
-<textarea name="mensaje" rows="4" cols="50" placeholder="Escribí tu mensaje"></textarea>
+<textarea name="mensaje" rows="4" cols="50" placeholder="Escribí tu
+mensaje"></textarea>
 ```
 
 La etiqueta `<select>` crea un menú desplegable y cada `<option>` representa una opción posible.
@@ -566,7 +575,8 @@ Estas validaciones no reemplazan todas las verificaciones posibles, pero son una
 Supongamos que estamos desarrollando un sitio web para ver videos, al estilo de Youtube. Los usuarios usarán un formulario para subir sus videos. A continuación se muestra un ejemplo de cómo podría ser ese formulario.
 
 ```html
-<form action="/subir-video" method="post" enctype="multipart/form-data">
+<form action="/subir-video" method="post"
+enctype="multipart/form-data">
   <h2>Subir nuevo video</h2>
 
   <section>
@@ -597,10 +607,12 @@ Supongamos que estamos desarrollando un sitio web para ver videos, al estilo de 
   <fieldset>
     <legend>Visibilidad</legend>
 
-    <input type="radio" id="publico" name="visibilidad" value="publico" checked>
+    <input type="radio" id="publico" name="visibilidad"
+    value="publico" checked>
     <label for="publico">Público</label>
 
-    <input type="radio" id="privado" name="visibilidad" value="privado">
+    <input type="radio" id="privado" name="visibilidad"
+    value="privado">
     <label for="privado">Privado</label>
   </fieldset>
 

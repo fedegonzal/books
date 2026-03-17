@@ -23,7 +23,7 @@ JavaScript puede escribirse dentro del propio documento HTML o en un archivo ext
 
 Una forma habitual es esta:
 
-```
+```html
 <script src="script.js" defer></script>
 ```
 
@@ -43,7 +43,7 @@ Aunque esto sirve para pruebas pequeñas, conviene no abusar de esa modalidad cu
 
 Las variables permiten guardar información para usarla más adelante. En JavaScript moderno se trabaja principalmente con `let` y `const`.
 
-```
+```js
 let precio = 1200;
 const IVA = 0.21;
 ```
@@ -55,7 +55,7 @@ La diferencia principal es esta:
 
 Por ejemplo:
 
-```
+```js
 let stock = 10;
 stock = stock - 1;
 ```
@@ -78,7 +78,7 @@ JavaScript es un lenguaje de tipado dinámico. Eso significa que una variable no
 
 Ejemplos simples:
 
-```
+```js
 let producto = 'Yerba';
 let precio = 2500;
 let disponible = true;
@@ -88,7 +88,7 @@ let descuento = null;
 
 Una operación importante para empezar a leer código es `typeof`, que permite consultar el tipo de un valor:
 
-```
+```js
 typeof precio; // 'number'
 ```
 
@@ -125,14 +125,14 @@ const producto = {
 
 Aquí no se accede por posición sino por nombre de propiedad:
 
-```
+```js
 producto.nombre; // 'Galletitas'
 producto.precio; // 1800
 ```
 
 En desarrollo web es muy común trabajar con arrays de objetos, porque ese formato representa colecciones de datos con bastante naturalidad:
 
-```
+```js
 const productos = [
   { nombre: 'Leche', precio: 1500 },
   { nombre: 'Pan', precio: 900 },
@@ -146,9 +146,10 @@ Además de guardar datos, en JavaScript es muy común transformarlos. Métodos c
 
 Por ejemplo:
 
-```
+```js
 const nombres = productos.map((producto) => producto.nombre);
-const economicos = productos.filter((producto) => producto.precio < 2000);
+const economicos = productos.filter((producto) => producto.precio <
+2000);
 const pan = productos.find((producto) => producto.nombre === 'Pan');
 ```
 
@@ -169,7 +170,7 @@ La igualdad estricta `===` es preferible a `==` en la mayoría de los casos, por
 
 La estructura condicional más habitual es `if`:
 
-```
+```js
 if (producto.stock > 0) {
   console.log('Hay stock disponible');
 } else {
@@ -181,7 +182,7 @@ Para repetir acciones, pueden usarse bucles como `for` o `while`.
 
 Ejemplo con `for`:
 
-```
+```js
 for (let indice = 0; indice < productos.length; indice++) {
   console.log(productos[indice].nombre);
 }
@@ -189,7 +190,7 @@ for (let indice = 0; indice < productos.length; indice++) {
 
 Ejemplo con `while`:
 
-```
+```js
 let indice = 0;
 while (indice < 3) {
   console.log(indice);
@@ -207,19 +208,19 @@ Esto permite evitar repeticiones, mejorar la legibilidad y dividir problemas gra
 
 Ejemplo simple:
 
-```
+```js
 function calcularPrecioConIVA(precio) {
   return precio * 1.21;
 }
 ```
 
-```
+```js
 const precioFinal = calcularPrecioConIVA(1000);
 ```
 
 Las funciones también pueden validar datos recibidos:
 
-```
+```js
 function sumarDosNumeros(num1, num2) {
   if (typeof num1 === 'number' && typeof num2 === 'number') {
     return num1 + num2;
@@ -238,7 +239,7 @@ JavaScript moderno ofrece algunas herramientas muy útiles para escribir funcion
 
 Los parámetros por defecto permiten definir un valor inicial cuando no se recibe uno explícito:
 
-```
+```js
 function aplicarDescuento(precio, porcentaje = 10) {
   return precio - (precio * porcentaje) / 100;
 }
@@ -248,7 +249,7 @@ Si se llama a `aplicarDescuento(2000)`, el porcentaje será `10`.
 
 El operador `...` en parámetros, conocido como rest, permite reunir una cantidad indefinida de argumentos en un array:
 
-```
+```js
 function armarMensaje(...palabras) {
   return palabras.join(' ');
 }
@@ -256,7 +257,7 @@ function armarMensaje(...palabras) {
 
 Por otra parte, las arrow functions son una forma abreviada de escribir funciones:
 
-```
+```js
 const duplicar = (numero) => {
   return numero * 2;
 }
@@ -264,7 +265,7 @@ const duplicar = (numero) => {
 
 Cuando la función tiene una sola expresión, puede resumirse aún más:
 
-```
+```js
 const obtenerNombres = (items) => items.map((item) => item.nombre);
 ```
 
@@ -286,19 +287,19 @@ const productos = [
 
 Y luego escribir funciones simples para operar con esos datos:
 
-```
+```js
 function obtenerProductosConStock(items) {
   return items.filter((item) => item.stock > 0);
 }
 ```
 
-```
+```js
 function obtenerNombres(items) {
   return items.map((item) => item.nombre);
 }
 ```
 
-```
+```js
 function calcularTotal(precios) {
   let acumulado = 0;
   for (let indice = 0; indice < precios.length; indice++) {

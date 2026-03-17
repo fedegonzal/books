@@ -35,7 +35,7 @@ También es habitual incluir comentarios para dejar notas dentro del código sin
 
 La estructura básica de un documento HTML se ve así:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -69,7 +69,7 @@ En resumen, HTML es tolerante y accesible, lo que lo hace ideal para comenzar a 
 Las etiquetas, más allá de su nombre y función básica, pueden incluir atributos que definen propiedades o comportamientos específicos de los elementos. Los atributos permiten personalizar cómo los elementos de una página web se comportan o se presentan. Cada atributo tiene un nombre y un valor, y se colocan dentro de la etiqueta de apertura, generalmente después del nombre de la etiqueta.
 
 Por ejemplo, para agregar una imagen:  
-```
+```html
 <img src="foto.jpg">
 ```
 

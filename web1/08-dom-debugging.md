@@ -154,7 +154,7 @@ Hay algunos problemas que aparecen muy seguido al empezar:
 
 Un error clásico sería este:
 
-```
+```js
 const titulo = document.querySelector('#titulo-principal');
 titulo.textContent = 'Nuevo titulo';
 ```
@@ -163,7 +163,7 @@ Si ese selector no encuentra nada, `titulo` será `null` y la segunda línea gen
 
 Una alternativa defensiva puede ser:
 
-```
+```js
 const titulo = document.querySelector('#titulo-principal');
 if (titulo) {
   titulo.textContent = 'Nuevo titulo';
@@ -178,7 +178,7 @@ Este módulo puede aplicarse al proyecto del supermercado sin introducir todaví
 
 Por ejemplo, se puede partir de una estructura como esta:
 
-```
+```js
 const productos = [
   { nombre: 'Leche', precio: 1500 },
   { nombre: 'Pan', precio: 900 },
@@ -188,13 +188,13 @@ const productos = [
 
 Y una lista vacía en HTML:
 
-```
+```html
 <ul id="lista-productos"></ul>
 ```
 
 Luego, desde JavaScript:
 
-```
+```js
 const lista = document.querySelector('#lista-productos');
 
 productos.forEach((producto) => {

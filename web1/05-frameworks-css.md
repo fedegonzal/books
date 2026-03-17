@@ -40,12 +40,18 @@ Una forma simple de incorporarlo en un proyecto de práctica es mediante CDN:
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1">
+<link
+href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+rel="stylesheet">
 </head>
 <body>
 ...
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script
+src="https://unpkg.com/bootstrap/dist/js/bootstrap.bundle.min.js">
+</script>
 </body>
 </html>
 ```
@@ -160,9 +166,12 @@ Uno de los rasgos más característicos de Tailwind es que el responsive design 
 
 ```html
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-<article class="rounded-xl border bg-white p-4 shadow-sm">Producto 1</article>
-<article class="rounded-xl border bg-white p-4 shadow-sm">Producto 2</article>
-<article class="rounded-xl border bg-white p-4 shadow-sm">Producto 3</article>
+<article class="rounded-xl border bg-white p-4 shadow-sm">Producto
+1</article>
+<article class="rounded-xl border bg-white p-4 shadow-sm">Producto
+2</article>
+<article class="rounded-xl border bg-white p-4 shadow-sm">Producto
+3</article>
 </div>
 ```
 
@@ -179,7 +188,9 @@ La idea es similar a la de otros sistemas responsive, pero aquí la decisión qu
 Tailwind no se limita a colores, bordes y espaciados. También permite expresar estados interactivos con prefijos como `hover:`, `focus:` o `disabled:`.
 
 ```html
-<a href="#" class="inline-block rounded-lg bg-green-700 px-4 py-2 text-white transition hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400">
+<a href="#" class="inline-block rounded-lg bg-green-700 px-4 py-2
+text-white transition hover:bg-green-800 focus:outline-none
+focus:ring-2 focus:ring-green-400">
 Ver más
 </a>
 ```
@@ -270,7 +281,8 @@ En Bootstrap podría escribirse así:
 <div class="row g-4">
 <div class="col-12 col-md-6 col-lg-4">
 <article class="card h-100 shadow-sm">
-<img src="galletitas.jpg" class="card-img-top" alt="Paquete de galletitas">
+<img src="galletitas.jpg" class="card-img-top" alt="Paquete de
+galletitas">
 <div class="card-body d-flex flex-column">
 <h2 class="card-title h5">Galletitas</h2>
 <p class="card-text text-secondary">Paquete de 250 gramos.</p>
@@ -288,11 +300,14 @@ En Tailwind, una interfaz parecida podría escribirse así:
 <section class="mx-auto max-w-6xl px-4 py-6">
 <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 <article class="overflow-hidden rounded-xl border bg-white shadow-sm">
-<img src="galletitas.jpg" alt="Paquete de galletitas" class="h-48 w-full object-cover">
+<img src="galletitas.jpg" alt="Paquete de galletitas" class="h-48
+w-full object-cover">
 <div class="flex h-full flex-col p-4">
 <h2 class="mb-2 text-lg font-semibold">Galletitas</h2>
 <p class="mb-4 text-sm text-gray-600">Paquete de 250 gramos.</p>
-<a href="#" class="mt-auto inline-block rounded-lg bg-green-700 px-4 py-2 text-white transition hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-400">Ver más</a>
+<a href="#" class="mt-auto inline-block rounded-lg bg-green-700 px-4
+py-2 text-white transition hover:bg-green-800 focus:outline-none
+focus:ring-2 focus:ring-green-400">Ver más</a>
 </div>
 </article>
 </div>
