@@ -218,6 +218,17 @@ La etiqueta `<img>` se usa para insertar imágenes en una página web. Es una et
 <img src="logo.png" alt="Logo del sitio web">
 ```
 
+Cuando una imagen necesita acompañarse con un epígrafe o una breve explicación, conviene usar `figure` y `figcaption`.
+
+```html
+<figure>
+  <img src="producto.jpg" alt="Paquete de yerba mate">
+  <figcaption>Envase principal de la línea clásica.</figcaption>
+</figure>
+```
+
+Esta estructura resulta útil cuando la imagen forma parte del contenido y no es solo un adorno. También vuelve más claro qué texto describe a qué recurso.
+
 La etiqueta `<video>` se utiliza para incrustar un archivo de video. Es recomendable especificar varios formatos mediante etiquetas `<source>` para mejorar la compatibilidad. Algunos atributos importantes son `controls`, `autoplay` y `loop`.
 
 ```html
@@ -247,6 +258,13 @@ La etiqueta `<iframe>` se utiliza para incrustar un documento HTML dentro de otr
   <img src="default.jpg" alt="Imagen predeterminada">
 </picture>
 ```
+
+Una ventaja importante de `picture` es que permite cargar versiones distintas de una misma imagen según el tamaño o la resolución de pantalla. Eso mejora dos cosas al mismo tiempo:
+
+- la calidad visual, porque no hace falta mostrar una imagen demasiado pequeña en una pantalla grande;
+- el rendimiento, porque un dispositivo pequeño no necesita descargar siempre la versión más pesada.
+
+En proyectos reales, esto ayuda a equilibrar nitidez, velocidad de carga y consumo de datos. En otras palabras, no se trata solo de “hacer que la imagen se vea”, sino de elegir mejor qué recurso conviene cargar en cada contexto.
 
 La etiqueta `<canvas>` se usa para dibujar gráficos, animaciones o contenido dinámico mediante JavaScript.
 
@@ -303,7 +321,7 @@ La etiqueta `<nav>` representa una sección del documento que contiene enlaces d
 </main>
 ```
 
-La etiqueta `<section>` se usa para agrupar contenido relacionado dentro de una misma temática. La etiqueta `<footer>` representa el pie de página de un documento o sección.
+La etiqueta `<section>` se usa para agrupar contenido relacionado dentro de una misma temática. La etiqueta `<article>` representa una unidad de contenido relativamente autónoma, como una noticia, una ficha, una publicación o un producto. La etiqueta `<aside>` sirve para contenido complementario: información relacionada, paneles laterales, enlaces secundarios o bloques de apoyo. La etiqueta `<footer>` representa el pie de página de un documento o sección.
 
 ```html
 <section>
@@ -311,11 +329,29 @@ La etiqueta `<section>` se usa para agrupar contenido relacionado dentro de una 
   <h3>...</h3>
 </section>
 
+<article>
+  <h2>Producto destacado</h2>
+  <p>Descripción del producto.</p>
+</article>
+
+<aside>
+  <h2>Productos relacionados</h2>
+  <p>Otros recursos o enlaces complementarios.</p>
+</aside>
+
 <footer>
   <p>Todos los derechos reservados.</p>
   <a href="mailto:info@misitio.com">Contáctanos</a>
 </footer>
 ```
+
+Una forma simple de diferenciarlas es esta:
+
+- `section` agrupa contenido por tema;
+- `article` encapsula una pieza que podría tener sentido por sí sola;
+- `aside` agrega contexto o contenido secundario alrededor de lo principal.
+
+Esa distinción no siempre es perfecta, pero ayuda mucho a escribir HTML más claro y más semántico.
 
 ## Ejemplo de HTML para un sitio de videos
 
@@ -400,7 +436,9 @@ En este ejemplo aparece `aria-label` para describir mejor la sección. Los atrib
 </html>
 ```
 
-## Etiquetas de interacción (o formulario)
+## Etiquetas de formularios y entrada de datos
+
+En este punto conviene ser precisos con el vocabulario. Aunque estos elementos suelen ser el punto de partida de muchas interfaces interactivas, en HTML por sí solos funcionan principalmente como controles para ingresar y enviar datos. La interacción en sentido más amplio, como responder a eventos, validar con mensajes dinámicos o modificar la interfaz en tiempo real, se trabajará después con JavaScript.
 
 La etiqueta `<form>` se utiliza para crear formularios en HTML. Dentro de un formulario se colocan los distintos campos que permiten al usuario ingresar y enviar datos a un servidor.
 
@@ -418,11 +456,27 @@ En formularios que incluyen archivos, como imágenes o videos, es obligatorio us
 </form>
 ```
 
-La etiqueta `<button>` permite crear botones, generalmente usados para enviar formularios con `type="submit"`.
+La etiqueta `<button>` permite crear botones, generalmente usados para enviar formularios con `type="submit"`. Más adelante también podrá usarse para disparar comportamientos desde JavaScript, pero aquí interesa sobre todo su papel dentro de formularios.
 
 ```html
 <button type="submit">Enviar</button>
 ```
+
+Conviene conocer al menos tres variantes comunes:
+
+- `type="submit"`, para enviar el formulario;
+- `type="button"`, para un botón que no envía automáticamente;
+- `type="reset"`, para restablecer los valores iniciales del formulario.
+
+Por ejemplo:
+
+```html
+<button type="submit">Guardar</button>
+<button type="button">Vista previa</button>
+<button type="reset">Limpiar</button>
+```
+
+En formularios reales, `submit` suele ser el caso principal. Los otros tipos conviene conocerlos para evitar comportamientos inesperados, especialmente cuando más adelante se combine HTML con JavaScript.
 
 La etiqueta `<textarea>` se utiliza para campos de texto de varias líneas, como un comentario o la descripción de un contenido. El atributo `name` es muy importante porque es el nombre con el que el servidor recibirá esa información.
 
@@ -462,6 +516,22 @@ Es común acompañar los campos de un formulario con un pequeño texto de ayuda.
 <input type="email" id="email" name="email">
 ```
 
+Cuando varios controles forman parte de una misma decisión, conviene agruparlos con `fieldset` y darles un título con `legend`.
+
+```html
+<fieldset>
+  <legend>Visibilidad del video</legend>
+
+  <input type="radio" id="publico" name="visibilidad" value="publico">
+  <label for="publico">Público</label>
+
+  <input type="radio" id="privado" name="visibilidad" value="privado">
+  <label for="privado">Privado</label>
+</fieldset>
+```
+
+Esto mejora la organización del formulario y también la accesibilidad, porque deja más claro que esas opciones pertenecen a un mismo grupo.
+
 ## Validación nativa de formularios
 
 Antes de pensar en validaciones con JavaScript, conviene aprovechar lo que HTML ya ofrece de forma nativa. Algunos atributos útiles son:
@@ -489,7 +559,7 @@ Ejemplo:
 </form>
 ```
 
-Estas validaciones no reemplazan todas las verificaciones posibles, pero son una primera capa muy útil. Más adelante, cuando se trabaje interacción con JavaScript, se verá cómo complementar estos controles con mensajes y comportamientos más específicos.
+Estas validaciones no reemplazan todas las verificaciones posibles, pero son una primera capa muy útil. Más adelante, cuando se trabaje interacción con JavaScript, se verá cómo complementar estos controles con mensajes, validaciones personalizadas y comportamientos más específicos.
 
 ## Ejemplo de form para un sitio de videos
 
@@ -524,13 +594,15 @@ Supongamos que estamos desarrollando un sitio web para ver videos, al estilo de 
     </select>
   </section>
 
-  <section>
+  <fieldset>
+    <legend>Visibilidad</legend>
+
     <input type="radio" id="publico" name="visibilidad" value="publico" checked>
     <label for="publico">Público</label>
 
     <input type="radio" id="privado" name="visibilidad" value="privado">
     <label for="privado">Privado</label>
-  </section>
+  </fieldset>
 
   <section>
     <button type="submit">Subir video</button>
@@ -551,8 +623,10 @@ Supongamos que estamos desarrollando un sitio web para ver videos, al estilo de 
 | `<input type="checkbox">` | Casilla de verificación. Puede estar marcada o no. |
 | `<input type="radio">` | Opción de selección única entre varias. |
 | `<textarea> </textarea>` | Área de texto multilínea, útil para comentarios o mensajes. |
-| `<button>` | Botón para enviar formularios o realizar acciones. |
+| `<button>` | Botón para enviar formularios o realizar acciones según su `type`. |
 | `<label>` | Asocia texto descriptivo a un campo del formulario. Mejora la accesibilidad. |
+| `<fieldset>` | Agrupa campos relacionados dentro de un formulario. |
+| `<legend>` | Título o descripción breve de un grupo de campos dentro de `fieldset`. |
 | `<select>` | Crea un menú desplegable de opciones. |
 | `<option>` | Representa cada opción dentro de un `<select>`. |
 

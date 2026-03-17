@@ -5,7 +5,7 @@ HTML es el punto de partida técnico del libro porque organiza la información q
 ## Objetivos del capítulo
 
 - identificar la estructura mínima de un documento HTML y la función de sus partes principales;
-- distinguir etiquetas estructurales, de contenido y de interacción;
+- distinguir etiquetas estructurales, de contenido y de formularios;
 - reconocer la diferencia entre elementos de bloque, en línea y atributos frecuentes;
 - escribir primeros documentos HTML con criterios básicos de orden, semántica y legibilidad.
 
@@ -88,13 +88,15 @@ Conviene distinguir ambos atributos desde el comienzo. Un `id` identifica un ele
 
 ## Tipos de etiquetas en HTML
 
-En HTML, las etiquetas se pueden clasificar según su función dentro del documento. Una forma sencilla de organizarlas es dividiéndolas en tres grupos principales: **estructurales, de contenido y de interacción**.
+En HTML, las etiquetas se pueden clasificar según su función dentro del documento. Una forma sencilla de organizarlas es dividiéndolas en tres grupos principales: **estructurales, de contenido y de formularios**.
 
 Las etiquetas estructurales definen la organización general de la página. Ayudan a establecer el esqueleto del sitio y facilitan la comprensión tanto para los navegadores como para motores de búsqueda. Algunos ejemplos son `<html>`, `<head>`, `<body>`, `<header>`, `<main>`, `<section>` y `<footer>`.
 
 Las etiquetas de contenido (también llamadas básicas) son las que permiten mostrar información al usuario: títulos, párrafos, imágenes, listas, enlaces, etc. Aquí encontramos etiquetas como `<h1>` a `<h6>` para títulos, `<p>` para párrafos, `<img>` para imágenes y `<a>` para enlaces.
 
-Por último, las etiquetas de interacción están diseñadas para que el usuario pueda enviar datos o interactuar con el sitio. Se usan principalmente en formularios. Algunos ejemplos son `<form>`, `<input>`, `<textarea>`, `<button>` y `<select>`.
+Por último, las etiquetas de formularios están diseñadas para capturar, organizar y enviar datos del usuario. Se usan principalmente en formularios. Algunos ejemplos son `<form>`, `<input>`, `<textarea>`, `<button>` y `<select>`.
+
+Conviene precisar la terminología: en este capítulo todavía no se trabaja interacción en el sentido completo del frontend. Aquí el foco está en los controles de entrada de datos. La interacción como respuesta dinámica a eventos, validaciones personalizadas o cambios en la interfaz se retomará más adelante con JavaScript.
 
 Esta clasificación no es oficial, pero resulta útil para entender cómo se construye una página HTML y qué función cumple cada grupo de etiquetas. Con el tiempo, se aprenderá a combinarlas para crear sitios completos y funcionales.
 
@@ -130,14 +132,14 @@ Hay muchas más etiquetas estructurales, por ejemplo `<nav>` (para navegación) 
 
 `<br>` (salto de línea) y `<hr>` (línea horizontal) también son útiles para conocer. No requieren atributos y son muy simples.
 
-### **Etiquetas de interacción más comunes**
+### **Etiquetas de formularios más comunes**
 
 | Etiqueta | Descripción técnica | Atributos comunes |
 | :---- | :---- | :---- |
 | `<form>` | Agrupa campos de entrada. Envía datos a un servidor. | action, method, enctype, name, autocomplete |
 | `<input>` | Campo de entrada flexible. El tipo se define con el atributo type. | type, name, value, placeholder, required |
 | `<textarea>` | Área de texto de varias líneas. | name, rows, cols, placeholder, required |
-| `<button>` | Botón para enviar el formulario o ejecutar una acción. | type, name, value, disabled |
+| `<button>` | Botón para enviar el formulario o activar una acción según el contexto. | type, name, value, disabled |
 | `<label>` | Etiqueta que se asocia a un campo de entrada. Mejora la accesibilidad. | for (asocia con el id del input), class, id |
 | `<select>` | Lista desplegable para elegir entre varias opciones. | name, required, multiple |
 | `<option>` | Define una opción dentro de un `<select>`. | value, selected, disabled |

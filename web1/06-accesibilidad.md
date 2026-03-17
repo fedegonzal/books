@@ -1,6 +1,6 @@
 # Accesibilidad web y responsive design
 
-Accesibilidad y responsive design ya aparecieron en capítulos anteriores, pero su importancia justifica tratarlos de forma específica. No se trata solo de “corregir detalles” después de diseñar una interfaz, sino de incorporar desde el principio criterios que hagan que la experiencia sea usable, clara y robusta para más personas y en más contextos.
+Después de trabajar estructura con HTML, presentación con CSS, organización con SASS y aceleración de interfaz con frameworks, aparece una pregunta más exigente: ¿lo que construimos realmente puede ser usado por personas distintas, en dispositivos distintos y en contextos distintos? Accesibilidad y responsive design ya aparecieron en capítulos anteriores, pero su importancia justifica tratarlos de forma específica. No se trata solo de “corregir detalles” después de diseñar una interfaz, sino de incorporar desde el principio criterios que hagan que la experiencia sea usable, clara y robusta para más personas y en más contextos.
 
 ## Objetivos del capítulo
 
@@ -16,6 +16,25 @@ La accesibilidad y el responsive design ya aparecieron varias veces en los módu
 En este módulo el objetivo es trabajar ambos temas de forma articulada. La accesibilidad se ocupa de que una interfaz pueda ser comprendida y utilizada por personas con diferentes condiciones, tecnologías y contextos. El responsive design se ocupa de que esa misma interfaz se adapte a distintos tamaños de pantalla y formas de interacción. En la práctica, ambos problemas suelen cruzarse.
 
 Una interfaz que se ve bien solo en escritorio no está realmente resuelta. Una interfaz que cambia de tamaño pero pierde foco visible, contraste o navegación por teclado tampoco. Por eso conviene pensarlos como parte de una misma responsabilidad de diseño e implementación.
+
+### **Lo que no resuelve un framework por sí solo**
+
+El capítulo anterior mostró que herramientas como Bootstrap o Tailwind pueden acelerar mucho el trabajo. Sin embargo, también dejan algo en evidencia: una interfaz no se vuelve accesible o usable solo porque usa clases bien conocidas o componentes populares.
+
+Por ejemplo:
+
+- una tarjeta armada con Bootstrap sigue necesitando una jerarquía de títulos razonable, textos alternativos útiles y enlaces claros;
+- un botón hecho con Tailwind puede verse correcto y aun así no tener foco visible suficiente;
+- una grilla responsive puede reorganizarse bien en mobile y, sin embargo, seguir teniendo botones demasiado pequeños o formularios difíciles de usar con teclado.
+
+Esto importa porque obliga a cambiar la pregunta. Ya no alcanza con pensar “¿funciona la clase?” o “¿se ve bien?”. También hace falta preguntar:
+
+- ¿se entiende la estructura?
+- ¿se puede recorrer con teclado?
+- ¿los estados interactivos siguen siendo visibles?
+- ¿el contenido mantiene orden y legibilidad cuando el espacio cambia?
+
+Ese desplazamiento de foco es justamente el objetivo de este módulo.
 
 ## Qué es accesibilidad web
 
@@ -95,6 +114,8 @@ Si se elimina el foco por razones visuales, hay que reemplazarlo por otra señal
 
 Este tipo de detalle parece pequeño, pero determina si una interfaz puede o no usarse con teclado de forma confiable.
 
+También conviene no depender solo del hover para comunicar que un elemento es interactivo. En escritorio, el cursor puede sugerir bastante. En pantallas táctiles o en navegación por teclado, ese recurso desaparece. Por eso los estados activos, el foco visible y el tamaño de los controles siguen siendo decisiones centrales incluso cuando un framework ya ofrece estilos prearmados.
+
 ## Responsive design como parte de la experiencia
 
 El responsive design no consiste solo en “hacer que entre” en una pantalla más chica. Consiste en reorganizar el contenido para que siga siendo legible, navegable y útil en distintos tamaños y condiciones de uso.
@@ -102,6 +123,19 @@ El responsive design no consiste solo en “hacer que entre” en una pantalla m
 Esto incluye mucho más que el ancho de la ventana. En un teléfono, por ejemplo, cambian el espacio disponible, la forma de leer, la precisión del puntero y el contexto de uso. Por eso una interfaz responsive necesita priorizar contenido, simplificar patrones y revisar jerarquías.
 
 Visto así, el responsive design se conecta con la accesibilidad: una interfaz que obliga a hacer zoom horizontal, que deja botones demasiado pequeños o que satura la pantalla con columnas innecesarias no ofrece una buena experiencia.
+
+### **Responsive no es solo cambiar columnas**
+
+En capítulos anteriores ya aparecieron media queries, Flexbox, Grid e incluso grillas de Bootstrap o variantes responsive de Tailwind. Todo eso sirve, pero no alcanza por sí solo. Una interfaz puede pasar de tres columnas a una y seguir estando mal resuelta.
+
+Algunas preguntas más útiles son estas:
+
+- ¿los botones y enlaces siguen teniendo un tamaño cómodo para tocar?
+- ¿los textos mantienen una longitud razonable y una jerarquía clara?
+- ¿los formularios apilan sus campos de una manera legible?
+- ¿las tablas, menús o filtros complejos siguen siendo utilizables en poco espacio?
+
+Pensado así, responsive design deja de ser una colección de breakpoints y pasa a ser una revisión de prioridades, lectura e interacción.
 
 ## Viewport, media queries y mobile first
 
@@ -169,7 +203,9 @@ Una posible secuencia de trabajo es la siguiente:
 - verificar que los formularios de carga vinculen correctamente `label` e `id`;
 - revisar contraste entre textos, botones y fondos;
 - asegurar que enlaces y botones tengan foco visible;
+- comprobar que los estados `hover` no sean la única pista de interacción;
 - reorganizar listados o fichas para que funcionen bien en pantallas pequeñas;
+- revisar si botones, enlaces y controles tienen tamaño táctil suficiente;
 - aplicar media queries solo donde la estructura realmente lo necesite.
 
 Un buen ejercicio consiste en abrir la página de listado y preguntarse: ¿qué pasa si la grilla de productos se ve en un teléfono? ¿Los textos siguen siendo legibles? ¿Los botones pueden tocarse sin dificultad? ¿El orden de lectura sigue siendo claro?

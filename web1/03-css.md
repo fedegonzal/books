@@ -418,6 +418,8 @@ El color en CSS se puede definir de diferentes maneras: mediante nombres en ingl
 
 Los bordes, márgenes y padding son esenciales para controlar el espacio alrededor de los elementos HTML. El borde (border) define una línea visible en los contornos del elemento; puede personalizarse en grosor, estilo (solid, dashed, dotted, etc.) y color. El margen (margin) representa el espacio exterior entre un elemento y su entorno, permitiendo separar componentes entre sí. Por otro lado, el relleno o padding es el espacio interior entre el borde del elemento y su contenido. Estas propiedades se pueden aplicar individualmente (margin-top, padding-left, etc.) o de forma abreviada (margin: 10px 20px). Una correcta gestión de estos espacios mejora la legibilidad, la estética y la responsividad del sitio. También se utilizan en conjunto con modelos como el "box model", que representa gráficamente cómo se distribuyen y superponen estos espacios, siendo clave para un diseño web limpio y estructurado.
 
+![box model](assets/box-model.png)
+
 ### **Fondos e imágenes de fondo**
 
 Los fondos en CSS permiten aplicar colores sólidos o imágenes a los elementos HTML. La propiedad background-color define un color de fondo, mientras que background-image permite añadir imágenes. Esta imagen puede configurarse con propiedades como background-repeat (para repetir o no la imagen), background-position (para ubicarla), y background-size (para escalarla, por ejemplo con cover o contain). También se puede usar background-attachment para fijar la imagen al viewport. CSS permite aplicar múltiples fondos en capas, separándolos por comas. Además, background es una forma abreviada para definir varias de estas propiedades en una sola línea. El uso efectivo de fondos puede mejorar el diseño, reforzar la identidad visual y guiar la atención del usuario. Sin embargo, se debe tener cuidado con la legibilidad y el rendimiento del sitio, especialmente al usar imágenes pesadas o con contrastes que dificulten la lectura del contenido superpuesto.
@@ -580,9 +582,12 @@ gap: 1rem;
 Algunas propiedades fundamentales del contenedor son:
 
 - `flex-direction`: define si los elementos se acomodan en fila o columna;
+- `flex-wrap`: permite que los elementos pasen a la siguiente línea si no caben en una sola fila;
 - `justify-content`: alinea sobre el eje principal;
 - `align-items`: alinea sobre el eje secundario;
 - `gap`: agrega espacio entre elementos.
+
+![flex-direction y flex-wrap](assets/flex-direction.png)
 
 En los hijos pueden usarse propiedades como `flex-grow`, `flex-shrink` y `flex-basis`, o la forma abreviada `flex`.
 
@@ -603,6 +608,153 @@ flex: 1 1 250px;
 ```
 
 Con esta configuración, los productos se acomodan en varias filas y cada tarjeta intenta medir al menos 250 píxeles antes de pasar a la siguiente línea.
+
+### **Cómo pensar los ejes en Flexbox**
+
+Uno de los errores más comunes al empezar con Flexbox es perder de vista que trabaja con dos ejes:
+
+- el eje principal, que sigue la dirección definida por `flex-direction`;
+- el eje secundario, que queda perpendicular al principal.
+
+Si `flex-direction` vale `row`, el eje principal es horizontal. Si vale `column`, el eje principal pasa a ser vertical. Esta diferencia es importante porque `justify-content` siempre alinea sobre el eje principal, mientras que `align-items` lo hace sobre el secundario.
+
+Por ejemplo:
+
+```
+.panel {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: stretch;
+min-height: 300px;
+}
+```
+
+En este caso, los elementos se distribuyen verticalmente porque la dirección principal ahora es una columna.
+
+### **Propiedades útiles en los hijos**
+
+Además de las propiedades del contenedor, Flexbox ofrece herramientas para controlar el comportamiento de cada ítem.
+
+- `flex-grow`: indica cuánto puede crecer un elemento si sobra espacio;
+- `flex-shrink`: indica cuánto puede achicarse si falta espacio;
+- `flex-basis`: define un tamaño base inicial antes de repartir o reducir;
+- `align-self`: permite alinear un ítem de manera distinta al resto.
+
+Por ejemplo:
+
+```
+.barra {
+display: flex;
+gap: 1rem;
+}
+
+.barra__busqueda {
+flex: 1 1 20rem;
+}
+
+.barra__acciones {
+flex: 0 0 auto;
+}
+```
+
+Aquí el campo de búsqueda puede ocupar el espacio disponible, mientras que el bloque de acciones conserva un tamaño más cercano a su contenido.
+
+### **Qué significa realmente `flex: 1 1 250px`**
+
+La notación abreviada `flex` suele resultar confusa al principio porque condensa tres decisiones en una sola línea:
+
+- el primer valor indica si el elemento puede crecer (`flex-grow`);
+- el segundo indica si puede achicarse (`flex-shrink`);
+- el tercero define el tamaño base inicial (`flex-basis`).
+
+Por eso, cuando se escribe:
+
+```
+.producto {
+flex: 1 1 250px;
+}
+```
+
+se está diciendo que cada tarjeta:
+
+- parte de una base de `250px`;
+- puede crecer si sobra espacio;
+- puede reducirse si falta espacio.
+
+Este detalle es importante porque `flex-basis` no es exactamente lo mismo que `width`. En muchos casos se parecen, pero `flex-basis` participa directamente en el cálculo interno de Flexbox, mientras que `width` actúa como ancho del elemento. Cuando se quiere que un ítem entre en la lógica de reparto del contenedor, suele ser más claro usar `flex-basis`.
+
+También conviene prestar atención a `flex-shrink`. Si no se controla, algunos elementos pueden comprimirse más de lo deseado cuando el espacio escasea. Por eso, en componentes como botones, logos o bloques con texto breve, a veces conviene impedir esa reducción:
+
+```
+.logo {
+flex: 0 0 auto;
+}
+```
+
+Aquí el logo no crece, no se achica y conserva un tamaño gobernado por su contenido o por su ancho explícito.
+
+### **Cuando hay varias líneas: `align-content`**
+
+`align-items` y `justify-content` suelen alcanzar para muchos casos simples, pero cuando un contenedor usa `flex-wrap` aparece una propiedad adicional: `align-content`.
+
+Esta propiedad distribuye el conjunto de líneas dentro del contenedor, no los ítems individuales. Solo tiene efecto cuando hay más de una línea.
+
+```
+.galeria {
+display: flex;
+flex-wrap: wrap;
+gap: 1rem;
+align-content: start;
+min-height: 500px;
+}
+```
+
+Si en ese contenedor varias filas ocupan menos altura que la disponible, `align-content` permite decidir si esas filas quedan agrupadas arriba, centradas o repartidas en el espacio.
+
+Una distinción útil es esta:
+
+- `align-items` alinea los elementos dentro de cada línea;
+- `align-content` alinea las líneas entre sí dentro del contenedor.
+
+### **Reordenar no siempre significa mejorar**
+
+Flexbox también permite cambiar visualmente el orden de los elementos mediante `order`.
+
+```
+.destacado {
+order: -1;
+}
+```
+
+Esto puede ser útil en algunos componentes, pero conviene usarlo con cuidado. El orden visual no cambia necesariamente el orden semántico del HTML, y eso puede generar diferencias para lectores de pantalla o para la navegación con teclado. En general, si el orden del contenido es importante, conviene resolverlo primero en el HTML y usar `order` solo para ajustes puntuales.
+
+### **Patrones frecuentes con Flexbox**
+
+Flexbox aparece mucho en problemas pequeños pero muy habituales:
+
+- centrar contenido dentro de un bloque;
+- separar elementos hacia extremos opuestos;
+- construir filas de tarjetas que se envuelven;
+- alinear controles dentro de formularios o barras de herramientas.
+
+Un patrón clásico es empujar un elemento hacia el extremo contrario con `margin-left: auto`:
+
+```
+.nav {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.nav__login {
+margin-left: auto;
+}
+```
+
+Esto resulta muy útil para menús donde algunos enlaces quedan a la izquierda y una acción principal, como iniciar sesión, queda a la derecha.
+
+También es habitual combinar `flex-wrap` con tamaños base razonables para lograr listados más robustos sin depender tanto de media queries.
 
 ## Grid Layout
 
@@ -632,6 +784,179 @@ gap: 1rem;
 
 Grid facilita mucho la construcción de estructuras equilibradas, con menos hacks y más claridad que las técnicas clásicas.
 
+### **Columnas flexibles con `repeat()` y `minmax()`**
+
+Una de las mayores ventajas de Grid es que permite definir columnas que se adapten al espacio disponible sin tener que calcular manualmente cuántas entran.
+
+Por ejemplo:
+
+```
+.galeria {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+gap: 1rem;
+}
+```
+
+Esta regla le dice al navegador que cree tantas columnas como entren, cada una con un mínimo de 220 píxeles y un máximo flexible de `1fr`. Es un patrón especialmente útil para tarjetas, galerías y listados de productos.
+
+Conviene distinguir dos ideas:
+
+- `repeat()` evita repetir la misma medida muchas veces;
+- `minmax()` define un rango de tamaño posible para cada pista de la grilla.
+
+### **`auto-fit` y `auto-fill`: parecidos, pero no iguales**
+
+En ejemplos responsivos suele aparecer `repeat(auto-fit, minmax(...))`, pero existe una alternativa cercana: `auto-fill`.
+
+Ambas permiten crear tantas columnas como entren en el espacio disponible. La diferencia es que `auto-fill` tiende a conservar pistas vacías si hay lugar para más columnas, mientras que `auto-fit` colapsa esas pistas vacías y reparte mejor el espacio entre las que sí tienen contenido.
+
+En la práctica:
+
+- `auto-fit` suele resultar más conveniente para tarjetas o productos que deben expandirse si sobran huecos;
+- `auto-fill` puede ser útil cuando interesa conservar la estructura de la grilla aunque algunas celdas queden vacías.
+
+No siempre se percibe la diferencia a simple vista, pero entenderla ayuda a elegir mejor el comportamiento responsivo de una galería o un listado.
+
+### **Ubicar elementos en filas y columnas**
+
+En Grid no solo importa cuántas columnas existen, sino también dónde se ubica cada elemento.
+
+```
+.dashboard {
+display: grid;
+grid-template-columns: 240px 1fr;
+grid-template-rows: auto 1fr auto;
+gap: 1rem;
+}
+
+.dashboard__sidebar {
+grid-column: 1 / 2;
+grid-row: 1 / 4;
+}
+
+.dashboard__contenido {
+grid-column: 2 / 3;
+}
+```
+
+Este enfoque permite describir con bastante claridad qué ocupa cada zona. A diferencia de Flexbox, donde el orden lineal manda casi todo el comportamiento, Grid permite pensar la interfaz como una composición espacial.
+
+También es frecuente que un elemento deba ocupar más de una columna o más de una fila. Para eso puede usarse la palabra clave `span`:
+
+```
+.resumen {
+grid-column: span 2;
+}
+```
+
+Eso indica que el elemento debe extenderse a lo largo de dos columnas a partir de su posición actual. Es una forma muy práctica de destacar tarjetas, titulares o paneles dentro de una grilla.
+
+### **Grilla explícita e implícita**
+
+Cuando definimos `grid-template-columns` o `grid-template-rows`, estamos creando una grilla explícita. Sin embargo, Grid también puede crear pistas nuevas de manera automática si aparecen más elementos de los previstos o si algunos se ubican fuera de la estructura inicial.
+
+Ese comportamiento forma parte de la grilla implícita.
+
+```
+.listado {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-rows: 180px;
+gap: 1rem;
+}
+```
+
+Aquí las columnas explícitas son tres. Si aparecen más elementos y hace falta crear nuevas filas, cada una de esas filas implícitas medirá `180px` gracias a `grid-auto-rows`.
+
+También existen:
+
+- `grid-auto-columns`, para definir el tamaño de columnas implícitas;
+- `grid-auto-flow`, para decidir cómo se van ubicando automáticamente los elementos.
+
+Por ejemplo:
+
+```
+.paneles {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-auto-flow: row;
+gap: 1rem;
+}
+```
+
+Con `grid-auto-flow: row`, el navegador llena la grilla por filas, que es el comportamiento más habitual. También puede usarse `column` si interesa completarla por columnas, aunque es menos frecuente en interfaces generales.
+
+### **Áreas nombradas para layouts más legibles**
+
+Cuando el layout tiene regiones muy claras, `grid-template-areas` puede volver el CSS mucho más expresivo.
+
+```
+.pagina {
+display: grid;
+grid-template-columns: 240px 1fr;
+grid-template-areas:
+"encabezado encabezado"
+"menu contenido"
+"pie pie";
+gap: 1rem;
+}
+
+.pagina__encabezado { grid-area: encabezado; }
+.pagina__menu { grid-area: menu; }
+.pagina__contenido { grid-area: contenido; }
+.pagina__pie { grid-area: pie; }
+```
+
+No siempre hace falta usar áreas nombradas, pero pueden ser muy convenientes en estructuras principales de página porque hacen más legible la intención del layout.
+
+### **Alinear contenido dentro de una grilla**
+
+Además de ubicar elementos, Grid permite controlar cómo se alinean dentro de sus celdas y cómo se distribuye la grilla completa en el espacio disponible.
+
+```
+.metricas {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+place-items: center;
+gap: 1rem;
+}
+```
+
+`place-items` es una forma abreviada de combinar `align-items` y `justify-items`, y resulta útil cuando todos los ítems deben alinearse de la misma manera.
+
+También puede usarse `place-content` cuando lo que se quiere alinear no son los ítems dentro de cada celda, sino el conjunto de la grilla dentro del contenedor.
+
+### **Patrones frecuentes con Grid**
+
+Grid resulta especialmente útil cuando hace falta combinar estructura general y adaptabilidad.
+
+Un caso común es el de dashboards o paneles donde algunas tarjetas ocupan más espacio que otras:
+
+```
+.dashboard-resumen {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1rem;
+}
+
+.dashboard-resumen__principal {
+grid-column: span 2;
+}
+```
+
+Otro patrón muy frecuente es el de galerías o listados de productos que deben responder al ancho disponible sin depender de demasiados puntos de quiebre:
+
+```
+.catalogo {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+gap: 1rem;
+}
+```
+
+En estos casos, Grid permite describir con bastante claridad tanto la estructura como el comportamiento responsive.
+
 ## ¿Cuándo usar Flexbox o Grid?
 
 No se trata de elegir uno y descartar el otro. Ambas herramientas se complementan.
@@ -644,6 +969,20 @@ Una regla práctica sencilla es esta:
 - si estás armando la estructura general de una pantalla o una grilla más compleja, pensá primero en Grid.
 
 En muchos proyectos reales se usa Grid para el layout principal y Flexbox para organizar los componentes internos.
+
+Dicho de otro modo: Flexbox suele resolver mejor problemas de distribución de contenido, mientras que Grid suele resolver mejor problemas de organización espacial.
+
+Una forma útil de decidir es mirar qué pregunta domina el problema:
+
+- si la pregunta es "¿cómo reparto estos elementos en una línea?", probablemente Flexbox sea suficiente;
+- si la pregunta es "¿cómo organizo estas zonas en filas y columnas?", probablemente convenga Grid.
+- si la pregunta es "¿necesito ambas cosas a la vez?", probablemente la solución más clara sea combinarlos.
+
+Por ejemplo, un encabezado con logo, navegación y botón de acceso suele resolverse muy bien con Flexbox. En cambio, una portada con encabezado, barra lateral, contenido y pie de página suele ser más clara con Grid.
+
+Esa combinación aparece muy seguido: Grid organiza la estructura principal de la pantalla y, dentro de cada bloque, Flexbox alinea botones, enlaces, formularios o pequeños grupos de elementos.
+
+También conviene evitar una confusión frecuente: usar Grid para todo no vuelve automáticamente mejor un diseño, del mismo modo que intentar resolver un layout completo solo con Flexbox puede obligar a agregar demasiados contenedores intermedios. La elección depende del problema, no de cuál herramienta parece más moderna.
 
 ## Responsive Design
 
@@ -923,7 +1262,10 @@ El próximo paso será trabajar con herramientas que ayudan a organizar y escala
 
 1. Tome una página HTML simple y aplíquele estilos externos para definir tipografía, colores, espaciados y una jerarquía visual básica.
 2. Construya un listado de productos responsive que use Flexbox o Grid y cambie su disposición entre pantallas pequeñas y grandes.
+3. Diseñe una barra de navegación con Flexbox que incluya logo, enlaces y un botón alineado al extremo derecho. Explique qué propiedades del contenedor y de los hijos utilizó.
+4. Arme una galería de tarjetas con Grid usando `repeat()` y `minmax()`. Pruebe cómo cambia al achicar y agrandar la ventana del navegador.
 
 ### Integración
 
 1. Aplique CSS al proyecto del supermercado para diseñar `carga.html`, `ficha.html` y `lista.html` con una identidad visual coherente. Registre qué decisiones tomó en relación con colores, espaciado, layout y adaptación responsive.
+2. Rediseñe la portada o la página de listado del proyecto del supermercado combinando Grid para la estructura principal y Flexbox para los componentes internos. Justifique por qué eligió cada herramienta en cada parte.
