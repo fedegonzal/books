@@ -61,3 +61,11 @@ El recorrido del libro sigue la misma lógica general de la materia Desarrollo W
 Como hilo conductor práctico, el libro retoma el desarrollo de un sistema simple para supermercado. Ese proyecto permite trabajar con pantallas de carga, ficha y listado, y luego reutilizar la misma base para aplicar estilos, mejorar la accesibilidad e incorporar interacción.
 
 Con esta base, el siguiente capítulo propone una pregunta central para quien empieza: qué diferencia hay entre Internet y la Web, cómo se relacionan los navegadores con los servidores y por qué HTML, CSS y JavaScript ocupan un lugar tan importante en el desarrollo frontend.
+
+## Reporte de errores y sugerencias
+
+Este libro es un trabajo en constante evolución. Si encuentra errores, inconsistencias o tiene sugerencias para mejorar el contenido, por favor reportarlo en cualquiera de estos canales:
+
+- Correo electrónico: fgonzalez@untdf.edu.ar
+- GitHub: https://github.com/fedegonzal/frontend-book
+- Website: https://fedegonzalez.com
