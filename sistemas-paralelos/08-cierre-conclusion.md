@@ -1,0 +1,71 @@
+# Cierre y conclusión
+
+Al llegar a este punto, conviene recuperar la idea central que recorrió todo el libro: paralelizar no consiste solamente en usar más hardware, sino en aprender a descomponer problemas, elegir una estrategia de ejecución adecuada, medir resultados e interpretar límites reales de escalabilidad. Esa perspectiva atraviesa desde los conceptos más generales hasta los casos de vectorización y GPU.
+
+El recorrido desarrollado buscó justamente construir esa mirada. Primero se distinguieron los conceptos fundamentales del paralelismo y su diferencia respecto de la concurrencia y la computación distribuida. Luego se introdujeron arquitecturas, métricas y límites teóricos. Sobre esa base se estudiaron modelos de programación, APIs clásicas y herramientas accesibles en Python. Finalmente, se mostraron dos líneas especialmente relevantes en la computación contemporánea: la vectorización y el uso de GPU.
+
+## Objetivos del capítulo
+
+- recuperar las ideas centrales desarrolladas a lo largo del libro;
+- sintetizar qué criterios conviene conservar al estudiar o implementar soluciones paralelas;
+- señalar algunas líneas razonables de profundización futura;
+- cerrar el recorrido con una perspectiva unificada del campo.
+
+## Qué deja este recorrido
+
+En términos generales, el libro deja cuatro aprendizajes principales.
+
+El primero es conceptual. Resulta importante distinguir con precisión entre ejecución secuencial, concurrencia, paralelismo y distribución. Esa diferenciación inicial evita muchas confusiones posteriores y permite leer con mayor claridad las decisiones de diseño.
+
+El segundo es arquitectónico. El rendimiento de una implementación no depende solo del algoritmo, sino también del tipo de memoria, de la jerarquía de caché, del ancho de banda disponible y de los costos de sincronización. Por ese motivo, una solución correcta puede exhibir resultados muy distintos según la plataforma en la que se ejecute.
+
+El tercero es metodológico. Medir tiempos no alcanza por sí solo. Conviene interpretar speed-up, eficiencia, fracción secuencial, acceso a memoria y sobrecarga de coordinación. Sin ese paso analítico, la comparación entre implementaciones queda incompleta.
+
+El cuarto es práctico. En muchos problemas no existe una única forma correcta de paralelizar. A veces conviene repartir tareas; en otros casos, reformular el cálculo mediante vectorización; en otros, aprovechar GPU; y en otros, aceptar que el costo de paralelizar no justifica el beneficio esperado.
+
+## Criterios que conviene conservar
+
+Más allá de las bibliotecas o arquitecturas puntuales, este libro intentó sostener algunos criterios generales que conviene conservar al seguir estudiando el tema.
+
+Uno de ellos es que la elección de una estrategia debe responder a la estructura del problema. No se elige primero una herramienta y luego se busca dónde usarla. Conviene analizar si el trabajo es regular o irregular, si predomina el cómputo o el acceso a memoria, si el problema admite división natural en subtareas y qué costo introduce la coordinación entre ellas.
+
+Otro criterio importante es que el paralelismo siempre debe leerse junto con sus límites. Las leyes de Amdahl y Gustafson, la jerarquía de memoria, la localidad de caché, el false sharing, NUMA o los costos de transferencia en GPU muestran que escalar no es simplemente agregar recursos. También exige comprender dónde aparece el cuello de botella.
+
+Un tercer criterio tiene que ver con la observación. A lo largo del recorrido aparecieron señales de debugging y profiling en CPU y GPU. Ese punto conviene subrayarlo: en sistemas paralelos, muchos errores no son evidentes a primera vista. Un resultado no determinista, una mejora menor a la esperada o un kernel correcto pero ineficiente exigen mirar más allá del código fuente y prestar atención al comportamiento real del sistema.
+
+## Del fundamento a la práctica contemporánea
+
+Otro aspecto que conviene retener es que los fundamentos clásicos siguen siendo relevantes incluso cuando se trabaja con herramientas modernas. Los modelos de programación paralela, las APIs históricas y la distinción entre memoria compartida y distribuida no son piezas de museo. Siguen apareciendo, de una forma u otra, en bibliotecas de alto nivel, frameworks de datos y entornos de aceleración contemporáneos.
+
+En ese sentido, aprender paralelismo no equivale a memorizar tecnologías pasajeras. Supone construir una base conceptual que permita entender por qué una herramienta funciona, en qué contexto resulta adecuada y cuáles son sus límites. Esa base es la que hace posible adaptarse a nuevas bibliotecas y nuevas plataformas sin empezar siempre desde cero.
+
+## Continuidad del estudio
+
+Aunque este libro cierra aquí su recorrido principal, el campo del paralelismo ofrece varias líneas de profundización que pueden continuarse después.
+
+Una de ellas es el análisis más fino de debugging y profiling. Si bien el libro ya incorporó una primera aproximación, todavía es posible profundizar en herramientas de diagnóstico, observación de cuellos de botella y análisis detallado de rendimiento en CPU y GPU.
+
+Otra línea es MPI avanzado. El uso introductorio de operaciones colectivas permite comprender el modelo, pero un estudio posterior podría incorporar topologías, patrones de comunicación más complejos y escenarios más cercanos a clústeres reales.
+
+También existe una continuidad natural hacia frameworks y modelos más recientes, como `async/await`, Dask, Ray o enfoques de dataflow. Estos temas no fueron desarrollados en el cuerpo principal del libro porque exceden su carácter introductorio, pero constituyen una expansión razonable para quien quiera conectar fundamentos de paralelismo con ecosistemas contemporáneos de datos y sistemas distribuidos.
+
+Por último, puede profundizarse el estudio de GPU desde una perspectiva más cercana a la optimización fina, incorporando herramientas de profiling específicas, análisis detallado de kernels y estrategias avanzadas de memoria.
+
+## Una conclusión general
+
+En definitiva, estudiar sistemas paralelos implica aprender a pensar de manera más rica la relación entre problema, arquitectura e implementación. No se trata solo de hacer que un programa termine antes, sino de comprender por qué lo hace, hasta dónde puede escalar y qué compromisos introduce cada decisión técnica.
+
+Ese es, en última instancia, el propósito de este libro: ofrecer una base sólida para que el lector pueda reconocer cuándo conviene paralelizar, con qué estrategia y bajo qué criterios evaluar el resultado. A partir de aquí, el camino puede continuar hacia problemas más grandes, herramientas más especializadas y análisis de rendimiento más exigentes, pero con un marco conceptual ya construido.
+
+## Ejercicios del capítulo
+
+### Comprensión
+
+1. Identifique dos ideas centrales que el libro haya sostenido a lo largo de todo el recorrido.
+2. Explique por qué el paralelismo no puede reducirse únicamente a “usar más hardware”.
+3. Describa qué relación existe entre arquitectura, medición y elección de estrategia paralela.
+
+### Integración
+
+1. Redacte un texto breve en el que sintetice qué aprendió este libro sobre descomposición de problemas, medición e interpretación de rendimiento.
+2. Elija una línea de profundización futura y justifique por qué resulta una continuación natural del recorrido desarrollado.

@@ -4,7 +4,7 @@ Renders the Quarto book and prepends a JPG cover page to produce a merged PDF.
 Requires: pypdf, reportlab, Pillow  (pip install -r requirements.txt)
 
 Usage:
-  python compile.py [--cover-jpg PATH] [--source-pdf PATH] [--output-pdf PATH]
+  python compile.py [--cover-jpg PATH] [--quarto-folder PATH] [--output-pdf PATH]
 """
 
 import argparse
@@ -13,9 +13,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-DEFAULT_COVER_JPG  = Path("assets/frontpage.jpg")
-DEFAULT_SOURCE_PDF = Path("_book/Introducción-al-desarrollo-web-frontend.pdf")
-DEFAULT_OUTPUT_PDF = Path("web1-frontend-book.pdf")
+DEFAULT_COVER_JPG    = Path("assets/frontpage.jpg")
+DEFAULT_QUARTO_FOLDER = Path(".")
+DEFAULT_OUTPUT_PDF   = Path("book.pdf")
 
 # A4 dimensions in points (1 pt = 1/72 inch)
 A4_W, A4_H = 595.28, 841.89
@@ -48,25 +48,40 @@ def jpg_to_a4_pdf(jpg_path: Path) -> bytes:
 
 def main():
     parser = argparse.ArgumentParser(description="Render Quarto book and prepend a JPG cover page.")
-    parser.add_argument("--cover-jpg",  type=Path, default=DEFAULT_COVER_JPG,  metavar="PATH", help=f"Cover image (default: {DEFAULT_COVER_JPG})")
-    parser.add_argument("--source-pdf", type=Path, default=DEFAULT_SOURCE_PDF, metavar="PATH", help=f"Rendered book PDF (default: {DEFAULT_SOURCE_PDF})")
-    parser.add_argument("--output-pdf", type=Path, default=DEFAULT_OUTPUT_PDF, metavar="PATH", help=f"Output PDF path (default: {DEFAULT_OUTPUT_PDF})")
+    parser.add_argument("--cover-jpg",      type=Path, default=DEFAULT_COVER_JPG,     metavar="PATH", help=f"Cover image (default: {DEFAULT_COVER_JPG})")
+    parser.add_argument("--quarto-folder",  type=Path, default=DEFAULT_QUARTO_FOLDER, metavar="PATH", help=f"Folder containing _quarto.yml (default: {DEFAULT_QUARTO_FOLDER})")
+    parser.add_argument("--output-pdf",     type=Path, default=DEFAULT_OUTPUT_PDF,    metavar="PATH", help=f"Output PDF path (default: {DEFAULT_OUTPUT_PDF})")
     args = parser.parse_args()
 
-    cover_jpg  = args.cover_jpg
-    source_pdf = args.source_pdf
-    output_pdf = args.output_pdf
+    cover_jpg     = args.cover_jpg
+    quarto_folder = args.quarto_folder
+    output_pdf    = args.output_pdf
+
+    if not quarto_folder.is_dir():
+        print(f"Quarto folder not found: {quarto_folder}", file=sys.stderr)
+        sys.exit(1)
 
     print("Running quarto render...")
-    result = subprocess.run(["quarto", "render"], check=False)
+    result = subprocess.run(["quarto", "render"], cwd=quarto_folder, check=False)
     if result.returncode != 0:
         print("quarto render failed.", file=sys.stderr)
         sys.exit(result.returncode)
 
-    for path in (source_pdf, cover_jpg):
-        if not path.exists():
-            print(f"File not found: {path}", file=sys.stderr)
-            sys.exit(1)
+    book_dir = quarto_folder / "_book"
+    pdf_files = list(book_dir.glob("*.pdf"))
+    if not pdf_files:
+        print(f"No PDF found in {book_dir}", file=sys.stderr)
+        sys.exit(1)
+    if len(pdf_files) > 1:
+        print(f"Multiple PDFs found in {book_dir}: {[str(p) for p in pdf_files]}", file=sys.stderr)
+        print("Use --quarto-folder to point to a folder with a single PDF output.", file=sys.stderr)
+        sys.exit(1)
+    source_pdf = pdf_files[0]
+    print(f"Book PDF: {source_pdf}")
+
+    if not cover_jpg.exists():
+        print(f"File not found: {cover_jpg}", file=sys.stderr)
+        sys.exit(1)
 
     try:
         from pypdf import PdfWriter, PdfReader
