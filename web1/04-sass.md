@@ -27,7 +27,7 @@ Entre las ventajas principales de SASS se encuentran:
 
 SASS no reemplaza los fundamentos de CSS. Si la base de CSS está desordenada, SASS no la arregla por sí solo. Su valor aparece cuando ya se entiende bien CSS y se necesita escribirlo de forma más escalable.
 
-En una Web 1 conviene pensarlo como una herramienta de organización posible, no como un paso obligatorio después de aprender CSS. De hecho, CSS moderno ya resuelve parte de estos problemas con variables nativas, mejores estrategias de layout y otras capacidades del lenguaje. Aun así, SASS sigue siendo útil para introducir la idea de preprocesamiento, organización modular y reutilización de estilos.
+En un recorrido inicial conviene pensarlo como una herramienta de organización posible, no como un paso obligatorio después de aprender CSS. De hecho, CSS moderno ya resuelve parte de estos problemas con variables nativas, mejores estrategias de layout y otras capacidades del lenguaje. Aun así, SASS sigue siendo útil para introducir la idea de preprocesamiento, organización modular y reutilización de estilos.
 
 ## Sintaxis básica y flujo de trabajo
 
@@ -52,7 +52,7 @@ Para usar SASS es necesario convertir el archivo fuente en un archivo CSS final.
 - mediante una extensión o integración en el editor;
 - mediante herramientas de build del proyecto.
 
-En esta materia alcanza con comprender la lógica del proceso y, si se desea practicar, usar una variante simple de compilación asistida por editor o línea de comandos. La configuración profunda de tooling no es el objetivo central de Web 1.
+En este libro alcanza con comprender la lógica del proceso y, si se desea practicar, usar una variante simple de compilación asistida por editor o línea de comandos. La configuración profunda de tooling no es el objetivo central de este recorrido.
 
 En un flujo simple de aprendizaje, alcanza con compilar un archivo `estilos.scss` hacia un archivo `estilos.css` y luego enlazar ese CSS desde el HTML como siempre.
 
@@ -113,7 +113,7 @@ Al compilarse, esto se transforma en selectores CSS completos para `.producto h2
 
 El nesting es cómodo, pero conviene no exagerarlo. Si la anidación se vuelve muy profunda, el código pierde claridad y los selectores resultantes pueden volverse demasiado específicos.
 
-Como criterio práctico para una materia inicial, conviene mantener anidaciones cortas. Si una regla necesita demasiados niveles para entenderse, probablemente sea una señal de que la estructura puede escribirse de una manera más clara.
+Como criterio práctico para una etapa inicial, conviene mantener anidaciones cortas. Si una regla necesita demasiados niveles para entenderse, probablemente sea una señal de que la estructura puede escribirse de una manera más clara.
 
 ## Partials y organización de archivos
 
@@ -166,7 +166,7 @@ border-radius: 8px;
 }
 ```
 
-En la cursada, una aplicación muy útil de mixins es generar degradados o centralizar estilos repetidos de tipografía, botones o tarjetas.
+En una práctica inicial, una aplicación muy útil de mixins es generar degradados o centralizar estilos repetidos de tipografía, botones o tarjetas.
 
 ## Proyecto guiado: refactor del integrador con SASS
 

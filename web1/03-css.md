@@ -7,17 +7,13 @@ Después de definir la estructura con HTML, el paso siguiente es trabajar la dim
 - comprender cómo se vinculan selectores, propiedades, valores, cascada y especificidad;
 - aplicar estilos básicos y de layout con criterios de legibilidad y mantenimiento;
 - reconocer cuándo conviene usar Flexbox, Grid y responsive design según el problema;
-- comenzar a organizar CSS pensando en reutilización, accesibilidad y escalabilidad.
+- comenzar a organizar CSS pensando en reutilización y escalabilidad.
 
 ## Introducción al CSS
 
-CSS (Cascading Style Sheets, u Hojas de Estilo en Cascada) es un lenguaje fundamental en el desarrollo web, cuya función principal es definir la presentación visual de los documentos HTML. Mientras que HTML se encarga de la estructura y el contenido de una página, CSS permite controlar cómo se ven esos elementos: su disposición, colores, tipografías, márgenes, tamaños, animaciones y más. Gracias a CSS, el diseño web puede separarse del contenido, facilitando tanto el mantenimiento del sitio, la reutilización de estilos en múltiples páginas y el trabajo colaborativo en equipos interdisciplinarios.
+CSS (Cascading Style Sheets, u Hojas de Estilo en Cascada) es el lenguaje que define la presentación visual de los documentos HTML. Mientras HTML organiza el contenido, CSS permite controlar cómo se ve: colores, tipografías, espaciados, tamaños, disposición de elementos y cambios de estado.
 
-El CSS fue propuesto por primera vez por Håkon Wium Lie en 1994, cuando trabajaba en el CERN junto con Tim Berners-Lee, creador de la Web. Por aquel entonces, los documentos HTML carecían de una forma estandarizada de definir estilos, lo que llevaba a una mezcla desordenada de contenido y presentación. La propuesta de Lie buscaba justamente eso: una manera de aplicar estilos de forma coherente y flexible, sin entorpecer el marcado semántico de las páginas.
-
-Desde su aparición, CSS ha evolucionado significativamente. La primera versión oficial (CSS1) fue publicada en 1996 por el W3C (World Wide Web Consortium), seguida por CSS2 en 1998. Hoy en día, nos encontramos con CSS3, que no se presenta como una versión única, sino como un conjunto de módulos que avanzan de forma independiente (por ejemplo, Flexbox, Grid, Transitions, etc.). Esta modularización ha permitido una evolución más ágil y adaptable a las necesidades del diseño moderno.
-
-En la actualidad, CSS se encuentra en el centro de varias tendencias importantes en el desarrollo web. Herramientas como Flexbox y CSS Grid han revolucionado la forma en que se diseñan interfaces, facilitando la creación de layouts complejos y adaptables. Además, tecnologías como CSS Variables, y animaciones nativas reflejan un lenguaje cada vez más poderoso y expresivo. También en los último años hubo una fuerte aceptación en el uso de frameworks, como Bootstrap, Tailwind y muchos más, que buscan mejorar la mantenibilidad y escalabilidad del código.
+Su aporte principal es separar estructura y presentación. Esa división vuelve más fácil mantener un sitio, reutilizar estilos en varias páginas y ajustar el diseño sin reescribir el contenido. En este capítulo el foco no estará en la historia del lenguaje, sino en aprender a usarlo con criterio para resolver problemas frecuentes de interfaz.
 
 ## Uso de CSS con HTML
 
@@ -76,59 +72,7 @@ font-weight: bold; font-size: 1rem;
 
 Aquí, el nombre describe la función del elemento (mensaje de alerta), se usan unidades relativas, y los estilos pueden aplicarse a diferentes elementos con el mismo propósito.
 
-Adoptar convenciones de nombres, evitar la repetición y separar responsabilidades son prácticas fundamentales para un CSS limpio y sostenible.
-
-### **BEM: una metodología para escribir CSS mantenible**
-
-A medida que los proyectos web crecen, también lo hacen los archivos CSS. Sin una organización clara, es fácil caer en definiciones confusas, estilos que se pisan entre sí o nombres difíciles de entender. Para evitar estos problemas, existen metodologías como BEM, que significa Bloque – Elemento – Modificador (Block – Element – Modifier).
-
-BEM propone una convención de nombres clara y estructurada que permite escribir estilos predecibles y reutilizables. Se basa en tres conceptos:
-
-**Bloque:** un componente independiente de la interfaz, como un botón, una tarjeta o un menú.
-
-**Elemento:** una parte del bloque que no tiene sentido por sí sola, como el título de una tarjeta o un ítem dentro de un menú.
-
-**Modificador:** una variante del bloque o elemento, como un color alternativo o un estado (activo, deshabilitado, etc.).
-
-**Ejemplo en HTML y CSS**
-
-```html
-<div class="tarjeta tarjeta--destacada">
-<h2 class="tarjeta__titulo">Curso de CSS</h2>
-<p class="tarjeta__descripcion">
-Aprendé a diseñar sitios web modernos.
-</p>
-</div>
-```
-
-```css
-.tarjeta {
-border: 1px solid #ccc;
-padding: 1rem;
-}
-```
-
-```css
-.tarjeta--destacada {
-border-color: #0066cc;
-background-color: #f0f8ff;
-}
-```
-
-```css
-.tarjeta__titulo {
-font-size: 1.5rem;
-margin-bottom: 0.5rem;
-}
-```
-
-```css
-.tarjeta__descripcion {
-color: #555;
-}
-```
-
-Con BEM, los nombres son largos pero muy claros. Esto evita conflictos de estilos y facilita el trabajo en equipo, especialmente en proyectos grandes o cuando varios desarrolladores colaboran.
+Adoptar convenciones de nombres, evitar la repetición y separar responsabilidades son prácticas fundamentales para un CSS limpio y sostenible. Más adelante, cuando el proyecto crezca, podrán adoptarse metodologías de nombres más estrictas. En esta etapa alcanza con sostener nombres claros y consistentes.
 
 ## Los selectores vinculan CSS con HTML
 
@@ -244,41 +188,10 @@ font-weight: bold;
 
 Aquí, el primer elemento de cada lista se mostrará en negrita, resaltando su importancia visual.
 
-Existen muchísimas pseudoclases, en la documentación de la fundación Mozilla, puede consultarse la lista completa:  
-[https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes) 
-
-A continuación se resumen las más comunes:
-
-`:hover`
-Se activa cuando el usuario pasa el cursor sobre un elemento. Muy
-utilizada para mejorar la interactividad, por ejemplo, en botones y
 enlaces.
+Entre las más habituales para una primera etapa conviene reconocer al menos estas: `:hover`, `:focus`, `:active`, `:first-child`, `:checked` y `:disabled`. No hace falta memorizarlas todas desde ahora; lo importante es entender que permiten expresar estados y situaciones sin modificar el HTML.
 
-`:active`
-Se aplica mientras el elemento está siendo activado, por ejemplo, el
-tiempo en que se presiona un botón.
-
-`:focus`
-Se dispara cuando un elemento (como un input o un enlace) recibe el
-foco, permitiendo mejorar la accesibilidad y la experiencia del
-usuario en formularios y navegaciones mediante teclado.
-
-`:first-child`
-Selecciona el primer hijo de un elemento contenedor. Es útil para
-aplicar estilos diferenciados al primer elemento de una lista o
-sección.
-
-`:last-child`
-Similar a `:first-child`, este selector apunta al último hijo del
-contenedor, permitiendo ajustar estilos de cierre o final.
-
-`:checked`
-Muy útil en formularios, permite estilizar elementos como casillas de
-verificación y botones de radio cuando están seleccionados.
-
-`:disabled`
-Aplica estilos a elementos que están deshabilitados, por ejemplo,
-campos de formulario o botones que no deben interactuarse.
+La lista completa puede consultarse en MDN: [https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes)
 
 **Pseudoelementos**
 
@@ -301,8 +214,7 @@ color: gray;
 
 Inserta automáticamente una flecha gris al inicio de cada párrafo, sin modificar el contenido original del HTML.
 
-Más información sobre pseudoelementos:  
-[https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements) 
+Más información sobre pseudoelementos: [https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements)
 
 ## Especificidad y cascada en CSS
 
@@ -322,6 +234,8 @@ p { color: red; }
 La palabra "cascada" describe el proceso por el cual el navegador combina diferentes definiciones de estilos y resuelve conflictos entre reglas. Al igual que en una cascada real, donde el agua fluye desde distintos niveles y se va acumulando abajo, en CSS las reglas se van superponiendo unas sobre otras, y el navegador escoge cuál "gana" según una serie de criterios.
 
 La cascada se basa en tres principios principales:
+
+![Prioridad entre reglas CSS](assets/css-prioridad-reglas.png)
 
 **Origen del estilo:** Los estilos del autor tienen más peso que los estilos predeterminados del navegador, que existen para mostrar el HTML incluso cuando no hay CSS definido por quien desarrolla.
 
@@ -370,21 +284,11 @@ Ambas reglas tienen la misma especificidad (una clase), así que el navegador ap
 
 ## Herencia en CSS
 
-La herencia en CSS es un mecanismo que permite que ciertos estilos definidos en un elemento padre se transmitan automáticamente a sus elementos hijos. Este comportamiento refleja uno de los principios fundamentales de CSS: evitar la repetición de reglas y promover la escritura de código más limpio y eficiente.
+La herencia permite que ciertas propiedades definidas en un elemento padre se transmitan automáticamente a sus descendientes. Esto ocurre sobre todo con propiedades de texto, como `color`, `font-family`, `font-size` o `line-height`. En cambio, propiedades como `margin`, `padding`, `border` o `background` no se heredan de forma natural.
 
-No todas las propiedades CSS son heredables. Por defecto, las propiedades relacionadas con la presentación del texto, como color, font-family, font-size, line-height o letter-spacing, se heredan de forma natural. Esto significa que, si se definen en un elemento contenedor, los elementos descendientes adoptarán esos estilos a menos que se les indique lo contrario de forma explícita. En cambio, propiedades como margin, padding, border, width o background no se heredan automáticamente.
+Comprender esta diferencia ayuda a escribir CSS más compacto. Si una tipografía o un color general se define en `body`, muchos elementos la adoptarán sin que haga falta repetir la misma regla. Cuando se necesita forzar este comportamiento puede usarse el valor `inherit`.
 
-La herencia hace posible establecer estilos globales que se propaguen a lo largo del documento, simplificando la estructura del CSS y facilitando su mantenimiento. Además, CSS permite forzar la herencia mediante el valor inherit, lo que da mayor control cuando se quiere mantener coherencia visual en componentes más profundos del árbol del DOM.
-
-El valor inherit en CSS permite forzar que una propiedad se herede del elemento padre, incluso si esa propiedad no es heredable por defecto. Es una herramienta útil cuando se desea mantener coherencia visual o comportamiento uniforme en elementos que, por naturaleza, no recibirían ciertos estilos automáticamente.
-
-Propiedades como color o font-family se heredan naturalmente, sin embargo, otras como border, margin, padding o display no lo hacen. Si se desea que un elemento hijo copie exactamente el valor de una de estas propiedades desde su elemento padre, se puede usar inherit.
-
-Esta instrucción le indica al navegador: “no uses el valor por defecto ni uno nuevo, simplemente copia lo que tiene el padre”.
-
-Es especialmente útil cuando se trabaja con componentes o estructuras anidadas donde se quiere garantizar consistencia visual sin repetir estilos. También puede emplearse dentro de una regla para anular sobrescrituras accidentales o recuperar el estilo de un contenedor.
-
-En el ejemplo, `<h1>` y `<p>` tendrán tipografía "Segoe UI", pero `<p>` tendrá color negro, mientras que `<h1>` será rojo.
+En el ejemplo, `<h1>` y `<p>` heredarán la tipografía de `body`, pero solo `<h1>` tendrá color rojo porque ese valor fue sobrescrito de forma explícita.
 
 ```css
 body {
@@ -428,7 +332,7 @@ El color en CSS se puede definir de diferentes maneras: mediante nombres en ingl
 
 Los bordes, márgenes y padding son esenciales para controlar el espacio alrededor de los elementos HTML. El borde (border) define una línea visible en los contornos del elemento; puede personalizarse en grosor, estilo (solid, dashed, dotted, etc.) y color. El margen (margin) representa el espacio exterior entre un elemento y su entorno, permitiendo separar componentes entre sí. Por otro lado, el relleno o padding es el espacio interior entre el borde del elemento y su contenido. Estas propiedades se pueden aplicar individualmente (margin-top, padding-left, etc.) o de forma abreviada (margin: 10px 20px). Una correcta gestión de estos espacios mejora la legibilidad, la estética y la responsividad del sitio. También se utilizan en conjunto con modelos como el "box model", que representa gráficamente cómo se distribuyen y superponen estos espacios, siendo clave para un diseño web limpio y estructurado.
 
-![box model](assets/box-model.png)
+![box model](assets/css-box-model.png)
 
 ### **Fondos e imágenes de fondo**
 
@@ -597,7 +501,7 @@ Algunas propiedades fundamentales del contenedor son:
 - `align-items`: alinea sobre el eje secundario;
 - `gap`: agrega espacio entre elementos.
 
-![flex-direction y flex-wrap](assets/flex-direction.png)
+![flex-direction y flex-wrap](assets/css-flexbox-direction.png)
 
 En los hijos pueden usarse propiedades como `flex-grow`, `flex-shrink` y `flex-basis`, o la forma abreviada `flex`.
 
@@ -641,6 +545,8 @@ min-height: 300px;
 ```
 
 En este caso, los elementos se distribuyen verticalmente porque la dirección principal ahora es una columna.
+
+![Alineación en Flexbox](assets/css-flexbox-alineacion.png)
 
 ### **Propiedades útiles en los hijos**
 
@@ -793,6 +699,8 @@ gap: 1rem;
 ```
 
 Grid facilita mucho la construcción de estructuras equilibradas, con menos hacks y más claridad que las técnicas clásicas.
+
+![Estructura básica de CSS Grid](assets/css-grid.png)
 
 ### **Columnas flexibles con `repeat()` y `minmax()`**
 
@@ -1054,106 +962,6 @@ grid-template-columns: 1fr 1fr;
 
 En muchos proyectos actuales, mobile first resulta más práctico porque ayuda a construir interfaces más claras y ligeras desde el inicio.
 
-### **Diseño adaptable vs diseño responsivo**
-
-Aunque a veces se usan como sinónimos, no son exactamente lo mismo.
-
-Un diseño adaptable suele definirse mediante varias versiones relativamente fijas que responden a ciertos tamaños concretos. Un diseño responsivo, en cambio, busca que la interfaz fluya y se reorganice con mayor continuidad.
-
-En la práctica, muchos proyectos mezclan ambas estrategias. Lo importante no es la etiqueta, sino que el contenido siga siendo usable y claro en distintos tamaños de pantalla.
-
-## Estilos avanzados
-
-Una vez dominados los fundamentos, CSS ofrece herramientas para enriquecer el diseño y mejorar la expresividad visual de una interfaz. Estas propiedades no reemplazan a una buena estructura, pero permiten agregar identidad, jerarquía y respuesta visual.
-
-### **Pseudo-elementos decorativos**
-
-Los pseudo-elementos `::before` y `::after` permiten insertar contenido decorativo sin modificar el HTML. Son útiles para iconos simples, separadores, etiquetas visuales o pequeños detalles de diseño.
-
-Ejemplo:
-
-```css
-.precio::before {
-content: "$";
-color: #2f6b2f;
-font-weight: bold;
-}
-```
-
-Conviene usarlos con criterio: son muy útiles para decoración, pero no deberían cargar información esencial que luego no pueda ser interpretada correctamente por otras herramientas.
-
-### **Variables en CSS**
-
-Las variables de CSS, también llamadas custom properties, permiten definir valores reutilizables dentro de una hoja de estilos. Son especialmente útiles para colores, espaciados, tipografías o tamaños repetidos.
-
-Ejemplo:
-
-```css
-:root {
---color-primario: #2f6b2f;
---color-secundario: #f7f4ea;
-}
-```
-
-```css
-.boton {
-background-color: var(--color-primario);
-color: white;
-}
-```
-
-Esto simplifica mucho el mantenimiento, porque un cambio en una variable puede propagarse a muchos componentes sin reescribir cada regla.
-
-### **Animaciones y transiciones**
-
-Las transiciones permiten suavizar cambios entre estados visuales. Son muy útiles en botones, enlaces, tarjetas y menús.
-
-Ejemplo:
-
-```css
-.boton {
-transition: background-color 0.3s ease, transform 0.3s ease;
-}
-```
-
-```css
-.boton:hover {
-background-color: #245224;
-transform: translateY(-2px);
-}
-```
-
-Las animaciones, en cambio, permiten secuencias más complejas usando `@keyframes`. Aunque son potentes, conviene usarlas con moderación y evitar movimientos innecesarios que puedan distraer o afectar accesibilidad.
-
-### **Filtros y efectos visuales**
-
-CSS permite aplicar filtros sobre imágenes u otros elementos visuales con propiedades como `filter`. Entre los valores más usados están `blur()`, `grayscale()`, `brightness()` o `contrast()`.
-
-Ejemplo:
-
-```css
-.imagen-deshabilitada {
-filter: grayscale(100%);
-}
-```
-
-Estos efectos pueden ser útiles para comunicar estados, pero no deberían convertirse en el único medio para transmitir información importante.
-
-### **Sombras y degradados**
-
-Las sombras y degradados son recursos clásicos para agregar profundidad y contraste visual.
-
-Por ejemplo:
-
-```css
-.tarjeta {
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-background: linear-gradient(180deg, #ffffff, #f7f7f7);
-}
-```
-
-Usados con moderación, ayudan a construir interfaces más claras. Si se exageran, pueden recargar el diseño y volverlo menos legible.
-
 ## Organización y buenas prácticas
 
 Un archivo CSS pequeño puede mantenerse casi sin esfuerzo, pero a medida que un proyecto crece, la organización se vuelve decisiva. La claridad en nombres, estructura y responsabilidades evita conflictos y facilita el trabajo en equipo.
@@ -1180,44 +988,6 @@ Cuando el proyecto empieza a crecer, suele ser útil separar el CSS por responsa
 - `components.css`, para botones, tarjetas, formularios y otros bloques reutilizables.
 
 No existe una única forma correcta de organizar archivos, pero sí conviene evitar hojas de estilo enormes y desordenadas que mezclen todo sin criterio.
-
-## Accesibilidad
-
-Aunque la accesibilidad tendrá un módulo específico más adelante, CSS también influye de forma directa en la experiencia de personas que navegan con diferentes condiciones o tecnologías de asistencia.
-
-Algunos criterios importantes en esta etapa son:
-
-- mantener contraste suficiente entre texto y fondo;
-- no eliminar indicadores de foco sin reemplazarlos por una alternativa visible;
-- no depender solo del color para comunicar un estado;
-- evitar animaciones excesivas o molestas;
-- cuidar tamaños de fuente e interlineado.
-
-Por ejemplo, una mala práctica común es eliminar el foco de los enlaces o botones con `outline: none;` sin ofrecer una alternativa. Si se modifica el foco, debe seguir siendo claramente visible.
-
-## Optimización
-
-Optimizar CSS no significa solo “hacerlo más corto”, sino también lograr que sea más claro, más mantenible y más eficiente.
-
-Algunas prácticas recomendables son:
-
-- evitar selectores innecesariamente complejos;
-- reutilizar clases y variables;
-- eliminar estilos muertos o duplicados;
-- agrupar reglas relacionadas con criterio;
-- minimizar archivos en entornos de producción.
-
-También existen herramientas de auditoría como Lighthouse o los paneles del navegador que ayudan a revisar rendimiento, accesibilidad y organización general del sitio.
-
-En proyectos pequeños, la optimización más importante suele ser la claridad. En proyectos grandes, además de eso, conviene atender peso final de archivos, carga de fuentes e imágenes y complejidad de las hojas de estilo.
-
-## El futuro del CSS
-
-CSS sigue evolucionando de forma constante. Muchas de las herramientas que hoy parecen básicas, como Flexbox, Grid o las variables, en otro momento fueron novedades. Lo mismo ocurre actualmente con características nuevas como subgrid, container queries, mejoras en selectores y funciones cada vez más expresivas.
-
-Esto no significa que haya que perseguir cada novedad apenas aparece. Lo importante es construir una base sólida y luego incorporar herramientas nuevas cuando realmente resuelven mejor un problema.
-
-En este libro, el objetivo no es cubrir todas las posibilidades del lenguaje, sino dejar una base suficientemente firme para que el crecimiento posterior tenga sentido.
 
 ## Proyecto guiado: dar estilo al sistema de supermercado
 
@@ -1258,7 +1028,7 @@ Recursos recomendados para profundizar:
 
 Con esto queda cubierta la base visual del desarrollo frontend. A esta altura, ya debería poder leer reglas de CSS con más criterio, distinguir por qué ciertos diseños funcionan mejor que otros y aplicar decisiones básicas de layout, responsive design y organización del código.
 
-El próximo paso será trabajar con herramientas que ayudan a organizar y escalar mejor las hojas de estilo, comenzando por los preprocesadores CSS.
+El próximo paso será revisar accesibilidad y responsive design como criterios de calidad de la interfaz, no solo como técnicas de maquetación.
 
 ## Ejercicios del capítulo
 

@@ -1,6 +1,6 @@
 # Accesibilidad web y responsive design
 
-Después de trabajar estructura con HTML, presentación con CSS, organización con SASS y aceleración de interfaz con frameworks, aparece una pregunta más exigente: ¿lo que construimos realmente puede ser usado por personas distintas, en dispositivos distintos y en contextos distintos? Accesibilidad y responsive design ya aparecieron en capítulos anteriores, pero su importancia justifica tratarlos de forma específica. No se trata solo de “corregir detalles” después de diseñar una interfaz, sino de incorporar desde el principio criterios que hagan que la experiencia sea usable, clara y robusta para más personas y en más contextos.
+Después de trabajar estructura con HTML y presentación con CSS, aparece una pregunta más exigente: ¿lo que construimos realmente puede ser usado por personas distintas, en dispositivos distintos y en contextos distintos? Accesibilidad y responsive design ya aparecieron en capítulos anteriores, pero su importancia justifica tratarlos de forma específica. No se trata solo de “corregir detalles” después de diseñar una interfaz, sino de incorporar desde el principio criterios que hagan que la experiencia sea usable, clara y robusta para más personas y en más contextos.
 
 ## Objetivos del capítulo
 
@@ -9,22 +9,22 @@ Después de trabajar estructura con HTML, presentación con CSS, organización c
 - diseñar interfaces que respondan bien a distintos tamaños de pantalla y contextos de uso;
 - revisar un proyecto existente detectando mejoras concretas de accesibilidad y adaptación.
 
-## Por qué este módulo es específico
+## Por qué este capítulo es específico
 
-La accesibilidad y el responsive design ya aparecieron varias veces en los módulos anteriores. No fue casualidad: son temas transversales al desarrollo frontend. Sin embargo, cuando se los menciona solo de paso, es fácil que queden reducidos a una lista de consejos sueltos.
+La accesibilidad y el responsive design ya aparecieron varias veces en los capítulos anteriores. No fue casualidad: son temas transversales al desarrollo frontend. Sin embargo, cuando se los menciona solo de paso, es fácil que queden reducidos a una lista de consejos sueltos.
 
-En este módulo el objetivo es trabajar ambos temas de forma articulada. La accesibilidad se ocupa de que una interfaz pueda ser comprendida y utilizada por personas con diferentes condiciones, tecnologías y contextos. El responsive design se ocupa de que esa misma interfaz se adapte a distintos tamaños de pantalla y formas de interacción. En la práctica, ambos problemas suelen cruzarse.
+En este capítulo el objetivo es trabajar ambos temas de forma articulada. La accesibilidad se ocupa de que una interfaz pueda ser comprendida y utilizada por personas con diferentes condiciones, tecnologías y contextos. El responsive design se ocupa de que esa misma interfaz se adapte a distintos tamaños de pantalla y formas de interacción. En la práctica, ambos problemas suelen cruzarse.
 
 Una interfaz que se ve bien solo en escritorio no está realmente resuelta. Una interfaz que cambia de tamaño pero pierde foco visible, contraste o navegación por teclado tampoco. Por eso conviene pensarlos como parte de una misma responsabilidad de diseño e implementación.
 
-### **Lo que no resuelve un framework por sí solo**
+### **Lo que no resuelve un diseño por sí solo**
 
-El capítulo anterior mostró que herramientas como Bootstrap o Tailwind pueden acelerar mucho el trabajo. Sin embargo, también dejan algo en evidencia: una interfaz no se vuelve accesible o usable solo porque usa clases bien conocidas o componentes populares.
+Trabajar colores, tipografía, layout o una grilla ordenada mejora mucho una interfaz, pero no alcanza por sí solo. Una pantalla puede verse prolija y aun así resultar difícil de recorrer, de entender o de usar en ciertos contextos.
 
 Por ejemplo:
 
-- una tarjeta armada con Bootstrap sigue necesitando una jerarquía de títulos razonable, textos alternativos útiles y enlaces claros;
-- un botón hecho con Tailwind puede verse correcto y aun así no tener foco visible suficiente;
+- una tarjeta bien maquetada sigue necesitando una jerarquía de títulos razonable, textos alternativos útiles y enlaces claros;
+- un botón puede verse correcto y aun así no tener foco visible suficiente;
 - una grilla responsive puede reorganizarse bien en mobile y, sin embargo, seguir teniendo botones demasiado pequeños o formularios difíciles de usar con teclado.
 
 Esto importa porque obliga a cambiar la pregunta. Ya no alcanza con pensar “¿funciona la clase?” o “¿se ve bien?”. También hace falta preguntar:
@@ -34,7 +34,7 @@ Esto importa porque obliga a cambiar la pregunta. Ya no alcanza con pensar “¿
 - ¿los estados interactivos siguen siendo visibles?
 - ¿el contenido mantiene orden y legibilidad cuando el espacio cambia?
 
-Ese desplazamiento de foco es justamente el objetivo de este módulo.
+Ese desplazamiento de foco es justamente el objetivo de este capítulo.
 
 ## Qué es accesibilidad web
 
@@ -137,6 +137,8 @@ Algunas preguntas más útiles son estas:
 
 Pensado así, responsive design deja de ser una colección de breakpoints y pasa a ser una revisión de prioridades, lectura e interacción.
 
+![Responsive como reorganización de la interfaz](assets/css-responsive.png)
+
 ## Viewport, media queries y mobile first
 
 Una de las primeras decisiones para trabajar diseño adaptable es incluir correctamente la etiqueta viewport:
@@ -194,7 +196,7 @@ También conviene pensar en la longitud de línea, el tamaño de tipografía, el
 
 ## Proyecto guiado: mejorar accesibilidad y responsive del supermercado
 
-Este módulo puede aplicarse directamente sobre el proyecto de supermercado desarrollado en los capítulos anteriores. La idea no es rehacerlo por completo, sino revisar decisiones y mejorarlo con criterios concretos.
+Este capítulo puede aplicarse directamente sobre el proyecto de supermercado desarrollado en los capítulos anteriores. La idea no es rehacerlo por completo, sino revisar decisiones y mejorarlo con criterios concretos.
 
 Una posible secuencia de trabajo es la siguiente:
 
@@ -214,7 +216,7 @@ Esa clase de preguntas transforma el responsive design y la accesibilidad en cri
 
 ## Validación y recursos recomendados para accesibilidad y responsive design
 
-Antes de dar por terminado este módulo, conviene revisar el proyecto con una lista simple de control:
+Antes de dar por terminado este capítulo, conviene revisar el proyecto con una lista simple de control:
 
 - ¿el documento declara idioma y viewport correctamente?
 - ¿la jerarquía de títulos tiene sentido?
@@ -237,9 +239,9 @@ Recursos recomendados para profundizar:
 - WCAG Quick Reference: [https://www.w3.org/WAI/WCAG22/quickref/](https://www.w3.org/WAI/WCAG22/quickref/)
 - WebAIM Contrast Checker: [https://webaim.org/resources/contrastchecker/](https://webaim.org/resources/contrastchecker/)
 
-Con este módulo queda consolidada una idea importante: desarrollar para la web no es construir una única versión pensada para un usuario ideal, sino producir interfaces capaces de adaptarse a la diversidad. A esta altura, ya debería poder mirar una interfaz con más criterio y detectar problemas de foco, contraste, estructura semántica o adaptación a pantallas pequeñas.
+Con este capítulo queda consolidada una idea importante: desarrollar para la web no es construir una única versión pensada para un usuario ideal, sino producir interfaces capaces de adaptarse a la diversidad. A esta altura, ya debería poder mirar una interfaz con más criterio y detectar problemas de foco, contraste, estructura semántica o adaptación a pantallas pequeñas.
 
-En el próximo módulo el foco pasará a JavaScript, incorporando lógica, comportamiento e interacción del lado del navegador.
+En el próximo capítulo el foco pasará a herramientas que ayudan a organizar mejor las hojas de estilo, comenzando por SASS.
 
 ## Ejercicios del capítulo
 

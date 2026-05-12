@@ -17,6 +17,8 @@ Una analogía útil es pensar en Internet como el sistema de carreteras que cone
 
 La Web (o World Wide Web, WWW) es un servicio dentro de Internet que permite acceder y compartir información a través de páginas web. Funciona con protocolos como HTTP y HTTPS, y se basa en enlaces hipertextuales que permiten navegar de una página a otra. Se accede a través de navegadores como Chrome o Firefox, y su contenido incluye textos, imágenes, videos y aplicaciones interactivas.
 
+![Diferencia entre Internet y la Web](assets/intro-internet-web.png)
+
 ## Breve historia de internet
 
 Internet nació en la década de 1960 como un proyecto del Departamento de Defensa de EE.UU. para crear una red de comunicación resistente a fallos. En 1969, se estableció ARPANET, la primera red de computadoras interconectadas, conectando universidades como UCLA y Stanford.
@@ -35,7 +37,7 @@ El objetivo inicial fue compartir información entre investigadores. La Web fue 
 
 El primer servidor Web se encontraba en la oficina de Tim Berners-Lee en el CERN y fue puesto en línea el 6 de agosto de 1991. El número de servidores Web pasó a 26 en 1992, y a 200 en octubre de 1995. En la actualidad se estima que existen casi 1.000 millones en todo el mundo.
 
-¡La primera página web de la historia todavía existe! [https://info.cern.ch/hypertext/WWW/TheProject.html](https://info.cern.ch/hypertext/WWW/TheProject.html) 
+La primera página web de la historia todavía puede consultarse en [https://info.cern.ch/hypertext/WWW/TheProject.html](https://info.cern.ch/hypertext/WWW/TheProject.html).
 
 A mediados de los 90, la Web se popularizó con navegadores como Mosaic y Netscape, que permitieron una navegación más fácil y visual. Empresas como Yahoo! (1994), Amazon (1994) y Google (1998) surgieron en esta época, expandiendo su uso comercial.
 
@@ -78,6 +80,8 @@ En una versión simplificada del proceso, ocurre algo así:
 3. El navegador envía una solicitud HTTP o HTTPS.
 4. El servidor responde con HTML y, en muchos casos, también con CSS, JavaScript, imágenes u otros recursos.
 5. El navegador interpreta esos archivos y construye la página visible.
+
+![Solicitud y respuesta entre navegador y servidor](assets/intro-request.png)
 
 Esta lógica de solicitud y respuesta aparece todo el tiempo en desarrollo web. Más adelante, cuando se trabajen formularios, fetch o APIs, volverá a aparecer con más detalle.
 
@@ -176,9 +180,9 @@ No hay una respuesta absoluta sobre si las MPA (Multi-Page Applications) o las S
 
 Si el proyecto necesita rapidez e interactividad en la navegación, una SPA es mejor. Si el foco es el SEO, contenido poco interactivo y accesibilidad, una MPA es más conveniente. 
 
-En algunos casos se usan enfoques híbridos. Uno de ellos es el Server-Side Rendering (SSR), donde el servidor entrega una primera versión de la página ya renderizada, y luego el navegador incorpora comportamiento dinámico con JavaScript. Para esta materia alcanza con reconocer que existen soluciones intermedias entre una MPA clásica y una SPA. El foco principal del libro estará puesto en los fundamentos del frontend, no en arquitecturas avanzadas de renderizado.
+En algunos casos se usan enfoques híbridos. Uno de ellos es el Server-Side Rendering (SSR), donde el servidor entrega una primera versión de la página ya renderizada, y luego el navegador incorpora comportamiento dinámico con JavaScript. Para este libro alcanza con reconocer que existen soluciones intermedias entre una MPA clásica y una SPA. El foco principal estará puesto en los fundamentos del frontend, no en arquitecturas avanzadas de renderizado.
 
-En este libro nos enfocaremos en el desarrollo web clásico, donde se abordarán los tres principales lenguajes mencionados (HTML, CSS y Javascript) sin la incorporación de frameworks ni librerías externos para Javascript, las que se verán en la siguiente edición de la materia "Desarrollo web 2".
+En este libro el recorrido se concentrará en el desarrollo web clásico, donde se abordarán los tres lenguajes principales ya mencionados: HTML, CSS y JavaScript. Frameworks de JavaScript, arquitecturas basadas en componentes y otras herramientas del ecosistema quedan fuera de este volumen para mantener el foco en la base conceptual.
 
 ## La web como diversidad
 

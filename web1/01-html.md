@@ -35,17 +35,19 @@ También es habitual incluir comentarios para dejar notas dentro del código sin
 
 La estructura básica de un documento HTML se ve así:
 
+![Estructura básica de un documento HTML](assets/html-estructura-documento.png)
+
 ```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
-<title>Mi primera página</title>
+<title>Ficha básica de producto</title>
 </head>
 <body>
-<h1>¡Hola, mundo!</h1>
-<p>Este es mi primer documento HTML.</p>
-<a href="https://www.ejemplo.com">Visita mi sitio</a>
+<h1>Yerba mate tradicional</h1>
+<p>Este es un primer ejemplo de página HTML para una ficha de producto.</p>
+<a href="lista.html">Ver más productos</a>
 </body>
 </html>
 ```
@@ -70,10 +72,10 @@ Las etiquetas, más allá de su nombre y función básica, pueden incluir atribu
 
 Por ejemplo, para agregar una imagen:  
 ```html
-<img src="foto.jpg">
+<img src="yerba-mate.jpg" alt="Paquete de yerba mate tradicional">
 ```
 
-Como puede verse, un atributo tiene un nombre y un valor, en este caso el nombre del atributo es "src" y su valor "foto.jpg".
+Como puede verse, un atributo tiene un nombre y un valor. En este caso, `src` indica el archivo de imagen y `alt` aporta un texto alternativo útil para accesibilidad y para situaciones en las que la imagen no pueda cargarse.
 
 Los atributos siempre deben estar dentro de la etiqueta de apertura, y el valor del atributo generalmente se coloca entre comillas dobles (" "), aunque en algunos casos también se pueden usar comillas simples (' ').
 

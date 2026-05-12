@@ -15,7 +15,7 @@ Una interfaz deja de ser solamente informativa cuando empieza a reaccionar a lo 
 
 En desarrollo frontend, la interacción con el usuario se construye combinando varias piezas: HTML para ofrecer controles, CSS para expresar estados visuales y JavaScript para escuchar acciones, procesarlas y responder de manera coherente.
 
-Este módulo se apoya en todo lo visto antes. El lenguaje ya fue presentado, el DOM ya puede leerse y modificarse; ahora el paso siguiente es responder a acciones reales del usuario y construir comportamientos más dinámicos.
+Este capítulo se apoya en todo lo visto antes. El lenguaje ya fue presentado, el DOM ya puede leerse y modificarse; ahora el paso siguiente es responder a acciones reales del usuario y construir comportamientos más dinámicos.
 
 ## Eventos del navegador
 
@@ -30,6 +30,8 @@ Algunos de los más habituales son:
 - `keydown` o `keyup`, cuando se presiona o suelta una tecla.
 
 Pensar en eventos ayuda a dejar atrás una lógica puramente lineal. El código ya no se ejecuta solo de arriba hacia abajo, sino que también espera acciones y responde cuando algo sucede.
+
+![Flujo básico de un evento en la interfaz](assets/js-eventos.png)
 
 ## Escuchar eventos con addEventListener
 
@@ -151,24 +153,34 @@ Este tipo de gesto mejora la comprensión de la interfaz porque evita que la acc
 
 No toda interacción se resuelve con datos ya presentes en la página. Muchas veces una acción del usuario requiere consultar un recurso externo, como una API o un archivo JSON. Para eso JavaScript ofrece `fetch()`.
 
+En el caso de la API del supermercado, los endpoints de lectura que resultan más útiles para esta etapa son `GET /categories/` y `GET /products/`. Para facilitar las pruebas del libro, puede usarse el token Bearer `web1` en el header `Authorization`.
+
 Ejemplo básico:
 
 ```js
-fetch('https://apis.datos.gob.ar/georef/api/provincias')
+const token = 'web1';
+
+fetch('https://ecommerce.fedegonzalez.com/categories/', {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
   .then((response) => {
     if (!response.ok) {
-      throw new Error('No se pudo obtener la informacion');
+      throw new Error('No se pudieron obtener las categorias');
     }
 
     return response.json();
   })
-  .then((data) => {
-    console.log(data);
+  .then((categorias) => {
+    console.log(categorias);
   })
   .catch((error) => {
     console.error(error.message);
   });
 ```
+
+La respuesta es un arreglo de categorías. Cada categoría incluye, al menos, `id`, `title`, `description` y, si existe, `picture`.
 
 Esto introduce una idea clave: hay respuestas que llegan más tarde. El programa hace una solicitud y continúa; cuando los datos llegan, recién entonces ejecuta la lógica asociada.
 
@@ -177,6 +189,8 @@ En una interfaz, esto puede usarse para autocompletar, cargar listados, filtrar 
 Aunque `fetch` no siempre implica una acción visible del usuario en sí misma, en muchos casos forma parte del circuito de interacción: el usuario solicita algo y la interfaz responde trayendo información nueva.
 
 Cuando se trabaja con `fetch`, también conviene pensar qué va a pasar si la respuesta tarda, falla o devuelve un resultado inesperado. En una interfaz real, estados como `cargando`, `error` o `sin resultados` son parte del diseño de interacción, no simples detalles técnicos.
+
+![Estados básicos de una interacción con fetch](assets/js-fetch.png)
 
 En JavaScript moderno también es frecuente resolver este mismo problema con `async/await`. En este libro no será un tema central, pero conviene reconocer que existe como otra forma de escribir lógica asincrónica sobre promesas.
 
@@ -205,7 +219,9 @@ En esta etapa conviene mantener el criterio: las templates son útiles cuando si
 
 ## Proyecto guiado: búsqueda y carga interactiva en el supermercado
 
-Para cerrar el libro, este módulo puede aplicarse al proyecto del supermercado de dos maneras complementarias.
+Para cerrar el libro, este capítulo puede aplicarse al proyecto del supermercado de dos maneras complementarias.
+
+En términos concretos, el cierre del ejemplo puede concentrarse en dos pantallas ya desarrolladas: `lista.html`, para sumar búsqueda y carga remota, y `carga.html`, para validar datos y ofrecer retroalimentación visible.
 
 La primera es agregar una búsqueda simple sobre el listado de productos:
 
@@ -235,11 +251,36 @@ formulario.addEventListener('submit', (event) => {
 });
 ```
 
-Si se quisiera dar un paso más, también podría consultarse una API o un archivo local para completar listados dinámicos y luego renderizarlos con templates. Eso no es obligatorio para comprender la materia, pero muestra hacia dónde evoluciona naturalmente el trabajo frontend.
+Si se quisiera dar un paso más, también podría consultarse la API del propio proyecto para traer productos reales y luego renderizarlos con templates. El endpoint `GET /products/` admite, además, filtros simples como `category_id`.
+
+```js
+fetch('https://ecommerce.fedegonzalez.com/products/?category_id=2', {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error('No se pudieron obtener los productos');
+    }
+
+    return response.json();
+  })
+  .then((productos) => {
+    console.log(productos);
+    // Cada producto puede incluir title, description, price,
+    // category_id, pictures, category y tags.
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });
+```
+
+Con este tipo de ejemplo, `fetch()` deja de aparecer como una llamada aislada y pasa a integrarse con el mismo dominio del proyecto: categorías, productos, listados y formularios.
 
 ## Validación y recursos recomendados para interacción con el usuario
 
-Antes de cerrar este módulo conviene revisar:
+Antes de cerrar este capítulo conviene revisar:
 
 - ¿los eventos están asociados a los elementos correctos?
 - ¿se entiende qué papel cumple `event.target`?
@@ -259,7 +300,7 @@ Recursos recomendados:
 
 Con este capítulo queda cerrada la secuencia principal del libro sobre fundamentos de desarrollo web frontend. A esta altura, ya debería poder reconocer cómo se conectan los tres lenguajes principales de la web: HTML ofrece estructura, CSS comunica estados visuales y JavaScript responde a acciones, modifica la interfaz y procesa información.
 
-A partir de aquí, una siguiente etapa natural sería profundizar en consumo de APIs, almacenamiento local, componentes reutilizables o frameworks de JavaScript, pero esa ya es una expansión propia de un curso posterior.
+A partir de aquí, una siguiente etapa natural sería profundizar en consumo de APIs, almacenamiento local, componentes reutilizables o frameworks de JavaScript, pero esa ya es una expansión que excede el alcance de este volumen.
 
 ## Ejercicios del capítulo
 

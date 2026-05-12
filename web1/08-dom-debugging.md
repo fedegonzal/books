@@ -17,6 +17,8 @@ Dicho de otro modo, cuando JavaScript interactúa con una página, no trabaja di
 
 Esta idea es central para el desarrollo frontend. HTML define la estructura inicial, pero el DOM es la estructura activa sobre la que JavaScript puede operar una vez que el navegador ya interpretó el documento.
 
+![Relación entre HTML, árbol DOM y selección de nodos](assets/js-dom.png)
+
 ## Seleccionar elementos del documento
 
 Para trabajar con el DOM primero hay que poder localizar elementos. Existen varios métodos, pero en la práctica conviene dominar sobre todo estos:
@@ -174,7 +176,9 @@ Esto no reemplaza a una buena estructura del programa, pero ayuda a leer mejor q
 
 ## Proyecto guiado: renderizar productos en el supermercado
 
-Este módulo puede aplicarse al proyecto del supermercado sin introducir todavía interacción compleja. La idea es usar un array de productos y reflejar esa información dentro del HTML.
+Este capítulo puede aplicarse al proyecto del supermercado sin introducir todavía interacción compleja. La idea es usar un array de productos y reflejar esa información dentro del HTML.
+
+Si en la etapa de HTML `lista.html` tenía contenido fijo, ahora puede empezar a construirse desde datos. Ese cambio es importante porque la interfaz deja de escribirse por completo a mano y empieza a generarse con lógica.
 
 Por ejemplo, se puede partir de una estructura como esta:
 
@@ -216,7 +220,7 @@ Pedagógicamente es un paso importante, porque el estudiante deja de pensar Java
 
 ## Validación y recursos recomendados para DOM y debugging
 
-Al cerrar este módulo conviene revisar algunas preguntas básicas:
+Al cerrar este capítulo conviene revisar algunas preguntas básicas:
 
 - ¿se entiende la diferencia entre HTML fuente y DOM cargado en navegador?
 - ¿los selectores usados realmente apuntan a los elementos esperados?
@@ -236,7 +240,7 @@ Recursos recomendados para profundizar:
 
 Con este capítulo queda resuelto el paso desde la lógica básica del lenguaje hacia la manipulación del documento. A esta altura, ya debería poder leer el DOM con más criterio, seleccionar nodos, modificar contenido y usar las herramientas del navegador para ubicar errores con mayor precisión.
 
-El próximo módulo se concentrará en la interacción con el usuario, incorporando eventos, formularios, respuestas visuales y comportamientos más dinámicos.
+El próximo capítulo se concentrará en la interacción con el usuario, incorporando eventos, formularios, respuestas visuales y comportamientos más dinámicos.
 
 ## Ejercicios del capítulo
 

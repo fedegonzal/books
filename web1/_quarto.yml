@@ -19,9 +19,9 @@ book:
     - part: "Presentación y diseño"
       chapters:
         - 03-css.md
+        - 06-accesibilidad.md
         - 04-sass.md
         - 05-frameworks-css.md
-        - 06-accesibilidad.md
     - part: "Comportamiento e interacción"
       chapters:
         - 07-javascript.md

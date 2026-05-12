@@ -1,14 +1,20 @@
-# Autoría y colaboradores
+# Presentación
 
-Federico Gonzalez Brizzio es el autor principal de este libro y jefe de cátedra de Desarrollo Web 1 en la UNTDF, donde además tiene a su cargo las asignaturas Laboratorio de Software, Sistemas Paralelos y Desarrollo Web II. Es Licenciado en Informática por la Universidad Nacional de la Patagonia San Juan Bosco, con un Máster en Smart Cities por la Universidad de Girona, un posgrado en Gobierno Abierto por la Organización de los Estados Americanos (OEA) y actualmente realiza su doctorado en Inteligencia Artificial en la Universidad de Barcelona. Es cofundador de Panalsoft, empresa orientada a la transformación digital de organizaciones públicas y privadas. Trabaja en el Institute of Science and Technology Austria (ISTA), un centro internacional de investigación científica ubicado en Klosterneuburg, a las afueras de Viena.
+## Sobre el autor
 
-Nicolás Sartori revisó los contenidos del libro y está a cargo de los trabajos prácticos de la materia. Es Ingeniero en Informática, posee una Maestría en Administración de Empresas y es CEO de Yamana Tech. Cuenta con amplia experiencia en tecnología de la información, ha sido asesor en innovación digital y ha liderado proyectos de modernización tecnológica en organismos públicos y privados.
+Federico Gonzalez Brizzio es el autor de este libro y jefe de cátedra de Desarrollo Web 1 en la UNTDF, donde además tiene a su cargo las asignaturas Laboratorio de Software, Sistemas Paralelos y Desarrollo Web II. Es Licenciado en Informática por la Universidad Nacional de la Patagonia San Juan Bosco, con un Máster en Smart Cities por la Universidad de Girona, un posgrado en Gobierno Abierto por la Organización de los Estados Americanos (OEA) y actualmente realiza su doctorado en Inteligencia Artificial en la Universidad de Barcelona. Es cofundador de Panalsoft, empresa orientada a la transformación digital de organizaciones públicas y privadas. Trabaja en el Institute of Science and Technology Austria (ISTA), un centro internacional de investigación científica ubicado en Klosterneuburg, a las afueras de Viena.
 
-Diego Abbá realizó la ilustración general del libro y las infografías que acompañan los distintos capítulos. Es diseñador gráfico y UX/UI, con vasta experiencia en diseño web y editorial, diseño digital e ilustración.
+## Ilustraciones y ejemplos visuales
 
-# Organización del libro
+La ilustración general del libro y las infografías principales fueron realizadas por Diego Abbá, diseñador gráfico y UX/UI con vasta experiencia en diseño web y editorial, diseño digital e ilustración.
 
-Este libro es la bibliografía oficial de la materia Desarrollo Web 1, de la Tecnicatura Universitaria en Desarrollo de Aplicaciones que se dicta en la Universidad Nacional de Tierra del Fuego (UNTDF), Argentina. Fue pensado para estudiantes que están dando sus primeros pasos en la construcción de sitios y aplicaciones web. 
+Sobre esa base, algunos ejemplos visuales complementarios y extensiones gráficas incorporadas en distintas secciones se desarrollaron con asistencia de ChatGPT, a partir de indicaciones editoriales orientadas a mantener coherencia con el enfoque pedagógico del libro.
+
+En todos los casos, la selección, revisión y decisión de incorporar esos materiales formó parte del trabajo editorial del autor.
+
+## Organización del libro
+
+Este libro es la bibliografía oficial de la materia Desarrollo Web 1, de la Tecnicatura Universitaria en Desarrollo de Aplicaciones de la Universidad Nacional de Tierra del Fuego (UNTDF), Argentina. Al mismo tiempo, fue escrito para que pueda ser aprovechado por cualquier persona que esté dando sus primeros pasos en la construcción de sitios y aplicaciones web.
 
 A lo largo de los capítulos se trabajará con una lógica de complejidad creciente: primero la estructura con HTML, después la presentación con CSS y finalmente la interacción con JavaScript. El recorrido combina explicaciones conceptuales, ejemplos y ejercicios, con un proyecto transversal que servirá para integrar los contenidos del libro.
 
@@ -20,7 +26,7 @@ Al finalizar el recorrido de este libro, se espera que el lector pueda:
 - incorporar lógica básica, manipulación del DOM e interacción con eventos usando JavaScript;
 - desarrollar una versión inicial de un proyecto integrador pequeño, justificando decisiones de estructura, presentación e interacción.
 
-Este libro fue elaborado como material de apoyo para estudiantes de la asignatura Desarrollo Web 1 de la UNTDF. Su objetivo principal es brindar una introducción accesible y gradual al desarrollo web, abordando los conocimientos fundamentales y las herramientas más utilizadas en la creación de sitios y aplicaciones web modernas.
+Su objetivo principal es brindar una introducción accesible y gradual al desarrollo web, abordando los conocimientos fundamentales y las herramientas más utilizadas en la creación de sitios y aplicaciones web modernas.
 
 El recorrido comienza con una introducción general a internet y al desarrollo web, abordando su evolución histórica, el funcionamiento básico de la web, y el rol que cumple quien desarrolla en este entorno. Esta mirada inicial permite contextualizar el uso de las tecnologías actuales y comprender su relevancia en el mundo digital.
 
@@ -38,15 +44,15 @@ Este libro propone un enfoque práctico, claro y progresivo, pensado para acompa
 
 ## Cómo usar este libro
 
-Este trabajo fue pensado como material de acompañamiento para una cursada inicial de desarrollo web. No busca funcionar como una especificación técnica exhaustiva, sino como una guía de estudio progresiva que combine conceptos, ejemplos y ejercicios orientados a la práctica.
+Este trabajo fue pensado como una guía de estudio inicial del desarrollo web. No busca funcionar como una especificación técnica exhaustiva, sino como un recorrido progresivo que combine conceptos, ejemplos y ejercicios orientados a la práctica.
 
-Su foco está puesto exclusivamente en Desarrollo Web 1. Por eso trabaja fundamentos de HTML, CSS, accesibilidad, responsive design, JavaScript base, DOM e interacción inicial. Temas como frameworks de JavaScript, componentes reutilizables o herramientas más avanzadas del ecosistema se retoman en una etapa posterior de la formación.
+Su foco está puesto en los fundamentos del frontend. Por eso trabaja HTML, CSS, accesibilidad, responsive design, JavaScript base, DOM e interacción inicial. Temas como frameworks de JavaScript, componentes reutilizables o herramientas más avanzadas del ecosistema quedan deliberadamente fuera de este volumen para no perder claridad en la base conceptual.
 
-La mejor manera de recorrerlo es avanzar en orden. HTML establece la estructura, CSS permite trabajar la presentación visual, y JavaScript incorpora interactividad. Cada módulo se apoya en los anteriores, por lo que conviene no saltear temas, incluso si algunos conceptos parecen sencillos al comienzo.
+La mejor manera de recorrerlo es avanzar en orden. HTML establece la estructura, CSS permite trabajar la presentación visual, y JavaScript incorpora interactividad. Cada capítulo se apoya en los anteriores, por lo que conviene no saltear temas, incluso si algunos conceptos parecen sencillos al comienzo.
 
-Siempre que sea posible, se recomienda leer cada sección con un editor abierto y reproducir los ejemplos. El aprendizaje del desarrollo web depende mucho de probar, equivocarse, corregir y volver a intentar. Por ese motivo, a lo largo del libro se proponen ejemplos guiados y proyectos que evolucionan gradualmente.
+Siempre que sea posible, se recomienda leer cada sección con un editor abierto y reproducir los ejemplos. El aprendizaje del desarrollo web depende mucho de probar, equivocarse, corregir y volver a intentar. Por ese motivo, a lo largo del libro se proponen ejemplos guiados y un proyecto práctico que evoluciona gradualmente.
 
-También conviene adoptar una rutina de trabajo desde el principio: leer con el navegador y el editor abiertos, reescribir a mano los ejemplos más importantes y revisar el resultado después de cada cambio. En una materia inicial, entender por qué algo funciona suele ser más valioso que avanzar rápido sobre muchos temas sin practicar.
+También conviene adoptar una rutina de trabajo desde el principio: leer con el navegador y el editor abiertos, reescribir a mano los ejemplos más importantes y revisar el resultado después de cada cambio. En una etapa inicial, entender por qué algo funciona suele ser más valioso que avanzar rápido sobre muchos temas sin practicar.
 
 ## Herramientas mínimas para empezar
 
@@ -54,11 +60,19 @@ Para aprovechar este libro alcanza con un navegador actualizado y un editor de c
 
 Además de esas herramientas, conviene organizar una carpeta de trabajo para guardar todos los ejemplos y mantener una costumbre simple: nombrar archivos con criterio, separar recursos en carpetas y validar frecuentemente lo que se va construyendo. También conviene empezar a familiarizarse con las herramientas de desarrollo del navegador para inspeccionar HTML, probar CSS y leer mensajes de error. Esa disciplina técnica, aunque parezca menor al comienzo, simplifica mucho el aprendizaje posterior.
 
-## Estructura de la materia
+## Estructura del recorrido
 
-El recorrido del libro sigue la misma lógica general de la materia Desarrollo Web 1. Primero se estudian los fundamentos del desarrollo web y el lenguaje HTML. Luego se incorpora CSS, junto con temas de responsive design, accesibilidad, preprocesadores y frameworks de estilos. Finalmente se aborda JavaScript, el DOM, el debugging y la interacción con el usuario.
+El recorrido del libro sigue una lógica progresiva. Primero se estudian los fundamentos del desarrollo web y el lenguaje HTML. Luego se incorpora CSS, junto con temas de responsive design, accesibilidad, preprocesadores y frameworks de estilos. Finalmente se aborda JavaScript, el DOM, el debugging y la interacción con el usuario.
 
 Como hilo conductor práctico, el libro retoma el desarrollo de un sistema simple para supermercado. Ese proyecto permite trabajar con pantallas de carga, ficha y listado, y luego reutilizar la misma base para aplicar estilos, mejorar la accesibilidad e incorporar interacción.
+
+En términos prácticos, el ejemplo evoluciona de esta manera a lo largo del libro:
+
+- en HTML se definen las pantallas `carga.html`, `ficha.html` y `lista.html`;
+- en CSS, accesibilidad y SASS se mejora su presentación, su legibilidad y su organización;
+- en JavaScript se modelan productos, categorías y reglas básicas del problema;
+- en DOM y debugging se vuelca esa información dentro de la interfaz;
+- en interacción se agregan búsqueda, validaciones y carga de datos remotos.
 
 Con esta base, el siguiente capítulo propone una pregunta central para quien empieza: qué diferencia hay entre Internet y la Web, cómo se relacionan los navegadores con los servidores y por qué HTML, CSS y JavaScript ocupan un lugar tan importante en el desarrollo frontend.
 

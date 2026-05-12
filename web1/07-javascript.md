@@ -7,7 +7,7 @@ Hasta este punto, el recorrido del libro trabajó sobre estructura y presentaci�
 - reconocer los conceptos básicos del lenguaje y su lugar dentro del frontend;
 - trabajar con variables, tipos, arrays, objetos, condicionales y funciones simples;
 - leer y escribir pequeñas transformaciones de datos con mayor seguridad;
-- modelar información del proyecto integrador antes de llevarla al DOM.
+- modelar información del proyecto del supermercado antes de llevarla al DOM.
 
 ## Qué es JavaScript y qué es ECMAScript
 
@@ -275,6 +275,8 @@ No hace falta usar arrow functions en todos lados. Lo importante, en una etapa i
 
 Antes de trabajar con el DOM, JavaScript puede usarse para modelar y procesar información del proyecto del supermercado. Eso permite practicar lógica sin mezclar todavía manipulación de interfaz.
 
+En esta etapa todavía no hace falta modificar `carga.html`, `ficha.html` ni `lista.html`. El foco está en preparar los datos y las reglas que, más adelante, alimentarán esas pantallas.
+
 Por ejemplo, se puede definir una colección de productos:
 
 ```js
@@ -321,7 +323,7 @@ La ventaja pedagógica es que el estudiante empieza a pensar en datos y reglas d
 
 ## Validación y recursos recomendados para JavaScript
 
-Al terminar este módulo conviene revisar si los ejemplos y ejercicios cumplen con algunos criterios básicos:
+Al terminar este capítulo conviene revisar si los ejemplos y ejercicios cumplen con algunos criterios básicos:
 
 - ¿se distingue claramente cuándo usar `let` y cuándo usar `const`?
 - ¿los valores de entrada y salida de cada función están claros?
@@ -341,7 +343,7 @@ Recursos recomendados para profundizar:
 
 Con este capítulo queda presentada la base del lenguaje. A esta altura, ya debería poder leer variables, funciones, condicionales, recorridos y estructuras de datos con mayor criterio, y escribir pequeñas soluciones ligadas a un problema concreto.
 
-El próximo módulo se apoyará sobre estas herramientas para trabajar con el DOM, inspeccionar documentos cargados en el navegador y empezar a depurar problemas de ejecución de manera más sistemática.
+El próximo capítulo se apoyará sobre estas herramientas para trabajar con el DOM, inspeccionar documentos cargados en el navegador y empezar a depurar problemas de ejecución de manera más sistemática.
 
 ## Ejercicios del capítulo
 

@@ -25,7 +25,7 @@ Los frameworks pueden aportar varias ventajas:
 
 Sin embargo, también introducen decisiones propias sobre nomenclatura, estructura y forma de trabajo. Por eso conviene estudiarlos después de conocer bien HTML, CSS y una base de organización del código.
 
-En este módulo se trabajará con dos enfoques muy representativos: Bootstrap y Tailwind CSS.
+En este capítulo se trabajará con dos enfoques muy representativos: Bootstrap y Tailwind CSS.
 
 ## Bootstrap: incorporación, grilla, componentes y personalización
 
@@ -136,7 +136,7 @@ Para una prueba rápida o una instancia de aprendizaje puede incorporarse median
 <script src="https://cdn.tailwindcss.com"></script>
 ```
 
-Ese mecanismo es útil para explorar Tailwind en ejercicios breves, pero no representa la forma habitual de trabajo en proyectos más grandes. En contextos reales suele integrarse con tooling específico, algo que excede el alcance de esta materia.
+Ese mecanismo es útil para explorar Tailwind en ejercicios breves, pero no representa la forma habitual de trabajo en proyectos más grandes. En contextos reales suele integrarse con tooling específico, algo que excede el alcance de este capítulo.
 
 ### **La lógica utility-first**
 
@@ -267,11 +267,11 @@ En cambio, un framework puede no ser la mejor opción cuando:
 - el framework termina ocultando decisiones que conviene entender desde la base;
 - el costo de adoptar sus convenciones es mayor que el beneficio real.
 
-En una materia inicial, lo importante es que el framework no tape el aprendizaje del lenguaje. Por eso tiene sentido estudiarlo después de haber trabajado CSS puro.
+En una etapa inicial, lo importante es que el framework no tape el aprendizaje del lenguaje. Por eso tiene sentido estudiarlo después de haber trabajado CSS puro.
 
 En otras palabras, un framework puede ahorrar tiempo, pero no debería reemplazar el criterio técnico. Si una clase funciona y no se entiende por qué, el aprendizaje queda incompleto. Por eso conviene usar estos recursos como apoyo sobre una base ya construida, no como un atajo para evitar comprender CSS.
 
-En el marco de Web 1, el objetivo de este capítulo es reconocer estos enfoques y poder evaluarlos con criterio. Su uso más profundo en combinación con otros lenguajes, librerías o arquitecturas corresponde a etapas posteriores del recorrido.
+El objetivo de este capítulo es reconocer estos enfoques y poder evaluarlos con criterio. Su uso más profundo en combinación con otros lenguajes, librerías o arquitecturas corresponde a etapas posteriores del recorrido.
 
 ## Ejemplo comparativo sobre una misma interfaz
 
@@ -346,9 +346,9 @@ Recursos recomendados para profundizar:
 
 Con esto queda cubierto un primer panorama de frameworks CSS. A esta altura, ya debería poder reconocer qué problemas resuelve un framework, qué costo introduce y por qué la elección entre Bootstrap y Tailwind depende más del contexto que de una preferencia abstracta.
 
-También conviene sacar una conclusión importante antes de seguir: ningún framework garantiza por sí solo una interfaz accesible ni verdaderamente responsive. Bootstrap puede ofrecer componentes y convenciones útiles. Tailwind puede acelerar mucho la composición visual. Pero en ambos casos siguen dependiendo del criterio del desarrollador cuestiones como la estructura semántica, el foco visible, el contraste, el tamaño táctil de los controles, el orden de lectura y la adaptación real a pantallas pequeñas.
+También conviene sacar una conclusión importante antes de seguir: ningún framework resuelve por sí solo todas las decisiones de una interfaz. Bootstrap puede ofrecer componentes y convenciones útiles. Tailwind puede acelerar mucho la composición visual. Pero en ambos casos siguen dependiendo del criterio del desarrollador cuestiones como la estructura semántica, la claridad del HTML, la coherencia visual y el mantenimiento del proyecto.
 
-El siguiente módulo retoma precisamente ese punto. Ya no se tratará de elegir una herramienta de maquetación, sino de revisar cómo asegurar que lo construido con HTML, CSS, SASS o frameworks siga siendo usable, claro y robusto en distintos contextos.
+El siguiente capítulo cambia de eje y entra en JavaScript, incorporando lógica, comportamiento e interacción del lado del navegador.
 
 ## Ejercicios del capítulo
 

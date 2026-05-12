@@ -1,6 +1,6 @@
 # Anexos finales
 
-## Anexo 1. Checklist breve de revisión antes de entregar
+## Anexo 1. Checklist breve de revisión final
 
 Antes de dar por cerrada una práctica o el integrador, conviene revisar esta lista mínima:
 
@@ -14,7 +14,7 @@ Antes de dar por cerrada una práctica o el integrador, conviene revisar esta li
 - ¿el JavaScript evita mezclar demasiadas responsabilidades en una sola función?
 - ¿los ejemplos del proyecto integrador se entienden sin depender de explicaciones externas?
 
-## Anexo 2. Glosario mínimo de la cursada
+## Anexo 2. Glosario mínimo del recorrido
 
 - HTML: lenguaje de marcado que estructura el contenido de una página.
 - CSS: lenguaje que define la presentación visual de ese contenido.
@@ -50,4 +50,4 @@ Una vez consolidada esta base, una progresión razonable de temas podría ser:
 - profundización en accesibilidad y testing de interfaces;
 - introducción a frameworks de JavaScript y componentes reutilizables en una etapa posterior.
 
-Ese tramo ya no pertenece a los objetivos centrales de Web 1. La idea de este libro es dejar una base suficientemente clara para llegar a esa siguiente etapa con mejor criterio técnico y menos dependencia de recetas.
+Ese tramo ya no pertenece a los objetivos centrales de este volumen. La idea de este libro es dejar una base suficientemente clara para llegar a esa siguiente etapa con mejor criterio técnico y menos dependencia de recetas.

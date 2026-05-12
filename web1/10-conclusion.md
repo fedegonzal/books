@@ -5,7 +5,7 @@ Este libro recorrió una idea central del desarrollo web frontend: una interfaz 
 ## Objetivos de cierre e integración
 
 - revisar el recorrido completo como un sistema articulado y no como una lista de temas aislados;
-- identificar qué capacidades mínimas debería consolidar una primera cursada de frontend;
+- identificar qué capacidades mínimas debería consolidar una primera etapa de aprendizaje en frontend;
 - integrar estructura, estilos, accesibilidad, lógica, DOM e interacción en un proyecto breve;
 - reconocer próximos temas de estudio sin perder de vista la base construida.
 
@@ -17,13 +17,13 @@ El proyecto del supermercado funcionó como hilo conductor porque permitió pasa
 
 Con esta base ya debería ser posible leer y producir pequeños proyectos frontend con más criterio, entender mejor qué hace cada tecnología y seguir avanzando hacia temas más complejos. Esa base no convierte automáticamente a nadie en especialista, pero sí ofrece un punto de partida sólido para encarar problemas reales con un lenguaje técnico más preciso y una mejor capacidad de análisis.
 
-En términos curriculares, este recorrido corresponde a una primera etapa. Aquí el foco estuvo en comprender cómo se construye una interfaz desde sus fundamentos: estructura, presentación, accesibilidad, lógica básica e interacción en el navegador.
+En términos formativos, este recorrido corresponde a una primera etapa. Aquí el foco estuvo en comprender cómo se construye una interfaz desde sus fundamentos: estructura, presentación, accesibilidad, lógica básica e interacción en el navegador.
 
-Un paso siguiente natural, ya fuera del alcance de esta etapa, sería profundizar en consumo de APIs, almacenamiento local, organización modular del código, herramientas de build y enfoques más avanzados de desarrollo frontend. También sería razonable avanzar hacia prácticas más sistemáticas de validación, debugging y mantenimiento. En otras palabras: este libro no agota el campo del frontend, pero sí busca dejar una plataforma confiable para seguir aprendiendo y continuar el recorrido en una materia posterior.
+Un paso siguiente natural, ya fuera del alcance de esta etapa, sería profundizar en consumo de APIs, almacenamiento local, organización modular del código, herramientas de build y enfoques más avanzados de desarrollo frontend. También sería razonable avanzar hacia prácticas más sistemáticas de validación, debugging y mantenimiento. En otras palabras: este libro no agota el campo del frontend, pero sí busca dejar una plataforma confiable para seguir aprendiendo y continuar el recorrido con herramientas más complejas.
 
-## Rúbrica orientativa para el proyecto integrador
+## Guía orientativa para revisar el proyecto integrador
 
-La siguiente rúbrica sirve como guía para evaluar una primera versión del proyecto del supermercado. No reemplaza la devolución docente cualitativa, pero ayuda a explicitar qué dimensiones conviene observar al revisar una entrega.
+La siguiente tabla sirve como guía para revisar una primera versión del proyecto del supermercado. No reemplaza el análisis cualitativo del trabajo, pero ayuda a explicitar qué dimensiones conviene observar.
 
 | Criterio | Logro inicial | Logro esperado | Logro sólido |
 | :---- | :---- | :---- | :---- |
@@ -33,9 +33,9 @@ La siguiente rúbrica sirve como guía para evaluar una primera versión del pro
 | JavaScript y lógica | Hay interacciones mínimas, con errores de organización o poca claridad. | El código resuelve validaciones, renderizado o eventos de forma comprensible. | El código está bien nombrado, separado por responsabilidades y resuelve interacciones con mayor robustez. |
 | Integración general | Las partes existen, pero se perciben desconectadas entre sí. | HTML, CSS y JavaScript se articulan correctamente en una experiencia coherente. | La integración es consistente, justificada y muestra criterio técnico en las decisiones tomadas. |
 
-## Criterios mínimos de entrega del integrador
+## Criterios mínimos del proyecto integrador
 
-Como referencia práctica, una entrega inicial del proyecto debería incluir al menos:
+Como referencia práctica, una primera versión del proyecto debería incluir al menos:
 
 - una página de carga de producto con formulario legible;
 - una ficha de producto con estructura clara y contenido relevante;

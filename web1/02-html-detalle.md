@@ -9,9 +9,9 @@ El capítulo anterior presentó la base del lenguaje. A partir de aquí el objet
 - aplicar criterios de validación y recursos de consulta para trabajar con HTML más completo;
 - trasladar esas decisiones a un primer proyecto guiado con páginas vinculadas entre sí.
 
-Como se mencionó en el capítulo anterior, HTML es un lenguaje sencillo de entender y aprender, aunque al principio la cantidad de etiquetas disponibles puede sonar abrumadora.
+Como se mencionó en el capítulo anterior, HTML es un lenguaje sencillo de aprender, aunque al principio la cantidad de etiquetas disponibles puede resultar abrumadora.
 
-Este libro se enfoca en las principales etiquetas y de uso cotidiano, mientras que el resto se irán aprendiendo con la práctica a medida que se necesiten.
+Este libro se enfoca en las etiquetas principales y de uso cotidiano, mientras que el resto se irán incorporando con la práctica a medida que hagan falta.
 
 **¿Dónde encontrar información detallada y una lista completa de todas las marcas de HTML?**
 
@@ -34,6 +34,8 @@ Estas etiquetas permiten describir la estructura de una página web de forma má
 El uso de HTML semántico también favorece el posicionamiento en buscadores (SEO), ya que los motores de búsqueda comprenden mejor el contenido y la jerarquía de la información. Además, facilita el mantenimiento del código y el trabajo en equipo, ya que al leer el HTML es más fácil entender qué función cumple cada parte.
 
 Escribir HTML semántico es una buena práctica que mejora la accesibilidad, el rendimiento y la organización del sitio, y es un estándar recomendado en el desarrollo web moderno.
+
+![Estructura semántica básica de una página](assets/html-layout.png)
 
 ## Etiqueta `<head>`
 
@@ -525,6 +527,8 @@ Es común acompañar los campos de un formulario con un pequeño texto de ayuda.
 <input type="email" id="email" name="email">
 ```
 
+![Estructura básica de un formulario accesible](assets/html-fieldset.png)
+
 Cuando varios controles forman parte de una misma decisión, conviene agruparlos con `fieldset` y darles un título con `legend`.
 
 ```html
@@ -644,7 +648,7 @@ enctype="multipart/form-data">
 
 ## Proyecto guiado: sistema de supermercado
 
-Para conectar los conceptos del módulo con una situación de desarrollo más realista, a lo largo de la cursada se propone un proyecto sencillo de supermercado. La idea no es construir una aplicación completa desde el comienzo, sino usar un caso concreto para practicar cómo se estructura la información con HTML.
+Para conectar los conceptos del capítulo con una situación de desarrollo más realista, se propone un proyecto sencillo de supermercado. La idea no es construir una aplicación completa desde el comienzo, sino usar un caso concreto para practicar cómo se estructura la información con HTML.
 
 En una primera etapa, el proyecto puede resolverse con tres pantallas básicas:
 
@@ -652,7 +656,7 @@ En una primera etapa, el proyecto puede resolverse con tres pantallas básicas:
 - `ficha.html`, para mostrar el detalle completo de un producto.
 - `lista.html`, para presentar un resumen de varios productos en forma de tabla.
 
-Este ejemplo permite reutilizar casi todas las etiquetas vistas en el módulo: encabezados, párrafos, imágenes, listas, tablas y formularios. También ayuda a pensar el HTML de forma más cercana al trabajo real, donde una misma aplicación necesita páginas con objetivos distintos.
+Este ejemplo permite reutilizar casi todas las etiquetas vistas en el capítulo: encabezados, párrafos, imágenes, listas, tablas y formularios. También ayuda a pensar el HTML de forma más cercana al trabajo real, donde una misma aplicación necesita páginas con objetivos distintos.
 
 Una versión inicial del proyecto podría organizarse así:
 
@@ -660,7 +664,7 @@ Una versión inicial del proyecto podría organizarse así:
 - `ficha.html`: título principal, imagen, tipo de producto, precio, descripción y lista de características.
 - `lista.html`: tabla con tipo de producto, título, precio y características resumidas.
 
-Este proyecto volverá a aparecer en los módulos siguientes. Primero servirá para practicar HTML, luego se utilizará para aplicar estilos con CSS, mejorar accesibilidad, reorganizar código con SASS e incorporar interactividad con JavaScript.
+Este proyecto volverá a aparecer en los capítulos siguientes. Primero servirá para practicar HTML, luego se utilizará para aplicar estilos con CSS, mejorar accesibilidad, reorganizar código con SASS e incorporar interactividad con JavaScript.
 
 ## Validación y recursos recomendados
 
@@ -685,7 +689,7 @@ Para profundizar y validar lo aprendido, estas referencias resultan especialment
 
 Con esto queda cerrada la base estructural del desarrollo web. A esta altura, ya debería poder leer un documento HTML con mayor criterio, distinguir estructuras semánticas mejores y peores, y construir formularios y páginas simples con un nivel inicial de validación.
 
-En el próximo módulo, el foco pasará desde el contenido hacia la presentación visual mediante CSS.
+En el próximo capítulo, el foco pasará desde el contenido hacia la presentación visual mediante CSS.
 
 ## Ejercicios del capítulo
 
