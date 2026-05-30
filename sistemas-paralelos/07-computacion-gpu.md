@@ -13,7 +13,8 @@ Comprender este cambio de perspectiva resulta importante dentro del recorrido de
 - explicar los principales factores que influyen en el rendimiento de un kernel;
 - introducir tipos de memoria y conceptos como coalescing, occupancy y warp divergence;
 - incorporar criterios básicos de debugging y profiling para kernels GPU;
-- presentar PyTorch GPU como vía de acceso de alto nivel al trabajo con tensores sobre aceleradores.
+- presentar PyTorch como vía de acceso de alto nivel al trabajo paralelo con tensores sobre CPU y GPU;
+- reconocer el papel de las transferencias, la sincronización y las operaciones por lotes en el rendimiento observado.
 
 ## El lugar de las GPU en este recorrido
 
@@ -169,11 +170,37 @@ En términos introductorios, conviene quedarse con esta idea: el rendimiento en 
 
 ## PyTorch sobre GPU
 
-Después de la aproximación con Numba, conviene pasar a una vía de más alto nivel. En este punto ya no hace falta presentar desde cero la idea de tensor, porque ese trabajo se introdujo en el capítulo anterior. Lo nuevo aquí es el dispositivo: cómo se trasladan tensores a un acelerador, cómo se ejecutan allí las operaciones y por qué el costo total de una solución GPU depende no solo del cómputo, sino también de las transferencias.
+Después de la aproximación con Numba, conviene pasar a una vía de más alto nivel. En este punto ya no hace falta presentar desde cero la idea de tensor, porque ese trabajo se introdujo en el capítulo anterior. Lo importante es ubicar a PyTorch como una abstracción de cómputo paralelo sobre tensores: el programa expresa operaciones sobre arreglos multidimensionales y la biblioteca decide cómo ejecutarlas de manera eficiente sobre CPU o GPU.
+
+Lo nuevo aquí es el dispositivo: cómo se trasladan tensores a un acelerador, cómo se ejecutan allí las operaciones y por qué el costo total de una solución GPU depende no solo del cómputo, sino también de las transferencias. Esta mirada evita reducir PyTorch a un framework de aprendizaje profundo. Aunque ese sea uno de sus usos más conocidos, para este capítulo interesa sobre todo como herramienta para formular cálculo paralelo de alto nivel.
 
 Desde el punto de vista pedagógico, este pasaje muestra otra escala de abstracción. Con Numba, el foco está en kernels, índices y configuración de ejecución. Con PyTorch GPU, en cambio, el foco se desplaza hacia el trabajo sobre tensores y hacia la decisión de dónde se ejecuta el cálculo. El cambio no invalida lo anterior: permite contrastar dos niveles de trabajo sobre el mismo tipo de hardware.
 
 En entornos reales, esta segunda vía tiene un papel importante en aprendizaje automático, procesamiento de imágenes y cálculo numérico sobre tensores. Muchas aplicaciones no escriben kernels a mano, sino que delegan gran parte de la ejecución a bibliotecas optimizadas que internamente aprovechan la GPU.
+
+## Paralelismo implícito en CPU
+
+Antes de pasar al acelerador, conviene señalar que PyTorch también puede aprovechar paralelismo en CPU. Muchas operaciones sobre tensores no se ejecutan como bucles Python elemento por elemento, sino mediante bibliotecas optimizadas de álgebra lineal y procesamiento numérico. Según la instalación y la plataforma, pueden intervenir implementaciones basadas en OpenMP, BLAS, MKL, oneDNN u otras bibliotecas equivalentes.
+
+Por ese motivo, un programa escrito con una apariencia secuencial puede activar trabajo paralelo por debajo de la interfaz de Python:
+
+```python
+import torch
+
+torch.set_num_threads(1)
+a = torch.rand(5000, 5000)
+b = torch.rand(5000, 5000)
+c = a @ b
+```
+
+El mismo cálculo puede repetirse modificando la cantidad de hilos disponibles:
+
+```python
+torch.set_num_threads(8)
+c = a @ b
+```
+
+La comparación no busca fijar un número universal de hilos, sino mostrar una idea conceptual: el usuario expresa una multiplicación de matrices, pero la implementación puede repartir internamente el trabajo entre varios núcleos de CPU. Esto conecta a PyTorch con lo estudiado previamente sobre NumPy, vectorización y bibliotecas numéricas optimizadas.
 
 ## Dispositivo, transferencias y costo total
 
@@ -222,6 +249,10 @@ if device != "cpu":
 
 Aquí aparecen con claridad tres momentos distintos: datos en CPU, cómputo en GPU y devolución del resultado al host. Esta secuencia es importante porque una implementación acelerada no debe evaluarse solo por el tiempo del cálculo puro. Si la transferencia domina el tiempo total, la mejora esperada puede reducirse mucho o incluso desaparecer.
 
+Conviene formular una regla práctica: los datos deben estar en el mismo dispositivo donde se ejecutará la operación. Si un tensor se creó en CPU y el cálculo se realizará en GPU, será necesario moverlo al dispositivo acelerador. Si varios cálculos se encadenan sobre GPU, en cambio, conviene mantener allí los tensores intermedios y evitar copias de ida y vuelta en cada paso. La transferencia de regreso a CPU solo es necesaria cuando el resultado debe usarse en un contexto que vive en el host: por ejemplo, convertirlo a NumPy, guardarlo con una biblioteca que espera datos en CPU, graficarlo, imprimir o inspeccionar valores concretos, o entregarlo a otra parte del programa que no trabaja sobre GPU.
+
+Esta distinción también evita errores frecuentes. PyTorch no permite operar directamente, en una misma expresión, con tensores ubicados en dispositivos distintos. Si `a` está en CPU y `b` está en GPU, antes de calcular con ambos habrá que mover uno de los dos para que compartan dispositivo. Por eso, además de preguntar si una operación puede acelerarse, debe preguntarse dónde viven sus entradas, dónde conviene que quede el resultado y qué se hará con ese resultado después.
+
 La misma lógica puede verse en una multiplicación de matrices:
 
 ```python
@@ -233,6 +264,126 @@ matrix_result = m1 @ m2
 ```
 
 La notación sigue siendo la misma que en CPU, pero ahora el cálculo puede delegarse al acelerador. Este tipo de continuidad explica por qué PyTorch GPU ocupa un lugar tan importante en flujos contemporáneos de aprendizaje profundo y procesamiento numérico intensivo.
+
+## Ejecución asíncrona y sincronización
+
+En GPU, muchas operaciones de PyTorch se lanzan de manera asíncrona respecto del programa Python. Esto significa que una instrucción puede solicitar una operación en el dispositivo y devolver el control al host antes de que el cálculo haya terminado efectivamente. La idea es similar a la ya vista al medir kernels CUDA: para interpretar correctamente los tiempos, no basta con registrar el reloj alrededor de la línea que lanza el trabajo.
+
+Una medición básica en CUDA con PyTorch debe sincronizar antes de detener el temporizador:
+
+```python
+import time
+import torch
+
+a = torch.rand(5000, 5000, device="cuda")
+b = torch.rand(5000, 5000, device="cuda")
+
+start = time.time()
+c = a @ b
+torch.cuda.synchronize()
+elapsed = time.time() - start
+```
+
+Sin esa sincronización, el tiempo medido puede representar principalmente el costo de encolar la operación y no su ejecución completa. Esta observación es importante porque refuerza una idea central del capítulo: en GPU hay que distinguir entre lanzar trabajo, ejecutar trabajo y transferir resultados.
+
+## Operaciones por lotes y paralelismo de datos
+
+Otra forma importante de aprovechar PyTorch consiste en formular operaciones por lotes. En lugar de resolver muchos casos pequeños con un bucle Python, suele ser preferible organizar los datos en un tensor con una dimensión adicional y aplicar una operación vectorizada o por lotes.
+
+Por ejemplo, si se dispone de muchas multiplicaciones de matrices independientes, puede usarse `torch.bmm` para expresar el lote completo:
+
+```python
+import torch
+
+batch_size = 1024
+a = torch.rand(batch_size, 32, 32, device=device)
+b = torch.rand(batch_size, 32, 32, device=device)
+
+result = torch.bmm(a, b)
+```
+
+En este caso, cada elemento del lote representa una multiplicación independiente. PyTorch puede delegar esa operación a rutinas optimizadas que aprovechan mejor el throughput del dispositivo que una secuencia de llamadas pequeñas desde Python. El punto conceptual es el mismo que atraviesa todo el capítulo: para obtener rendimiento no alcanza con tener hardware paralelo, también hay que expresar el problema de una forma que exponga suficiente paralelismo.
+
+## Experimentos prácticos con PyTorch
+
+Para que estas ideas no queden solo en el plano conceptual, conviene plantear algunos experimentos breves. No se trata de obtener una medición universal, porque los resultados dependen del hardware, de la instalación de PyTorch y del sistema operativo. El objetivo es observar tendencias y relacionarlas con los conceptos del capítulo.
+
+Un primer experimento consiste en comparar una operación tensorial con una operación escrita como bucle Python. La diferencia no está únicamente en la cantidad de operaciones aritméticas, sino en el lugar donde se ejecuta el trabajo principal:
+
+```python
+import time
+import torch
+
+n = 100_000
+a = torch.rand(n)
+b = torch.rand(n)
+c = torch.empty(n)
+
+start = time.time()
+for index in range(n):
+	c[index] = a[index] + b[index]
+elapsed_loop = time.time() - start
+
+start = time.time()
+c = a + b
+elapsed_tensor = time.time() - start
+```
+
+La segunda forma expresa la suma como una operación completa sobre tensores. Eso permite que PyTorch delegue la ejecución a código optimizado, mientras que el bucle Python introduce una gran cantidad de pasos interpretados. Este ejemplo recupera una idea ya trabajada con NumPy: para aprovechar bibliotecas numéricas, conviene formular operaciones sobre colecciones completas de datos siempre que el problema lo permita.
+
+Un segundo experimento permite observar el paralelismo implícito en CPU. La misma multiplicación de matrices puede medirse cambiando la cantidad de hilos disponibles:
+
+```python
+import time
+import torch
+
+a = torch.rand(4000, 4000)
+b = torch.rand(4000, 4000)
+
+torch.set_num_threads(1)
+start = time.time()
+c = a @ b
+elapsed_one_thread = time.time() - start
+
+torch.set_num_threads(8)
+start = time.time()
+c = a @ b
+elapsed_many_threads = time.time() - start
+```
+
+La comparación ayuda a discutir una situación frecuente: el código Python parece secuencial, pero la operación invocada puede estar implementada mediante rutinas paralelas de bajo nivel. El número más adecuado de hilos no es fijo; depende del procesador, de la carga del sistema y de la biblioteca usada internamente.
+
+Un tercer experimento separa transferencia y cómputo en GPU. Esta distinción es importante porque una versión acelerada puede resultar poco conveniente si los datos se copian hacia la GPU solo para realizar una operación pequeña y volver inmediatamente a CPU:
+
+```python
+import time
+import torch
+
+if torch.cuda.is_available():
+	device = "cuda"
+	a = torch.rand(5000, 5000)
+	b = torch.rand(5000, 5000)
+
+	start = time.time()
+	a_gpu = a.to(device)
+	b_gpu = b.to(device)
+	torch.cuda.synchronize()
+	transfer_to_gpu = time.time() - start
+
+	start = time.time()
+	c_gpu = a_gpu @ b_gpu
+	torch.cuda.synchronize()
+	compute_on_gpu = time.time() - start
+
+	start = time.time()
+	c = c_gpu.to("cpu")
+	torch.cuda.synchronize()
+	transfer_to_cpu = time.time() - start
+```
+
+Este tipo de medición permite analizar el costo total de una estrategia GPU. Si el cómputo es grande y los datos permanecen en el acelerador para varias operaciones encadenadas, la transferencia inicial puede amortizarse. Si, en cambio, cada operación obliga a copiar datos de ida y vuelta, el costo de comunicación puede dominar.
+
+Estos experimentos también ayudan a interpretar por qué PyTorch no debe pensarse solo como una biblioteca de redes neuronales. Desde el punto de vista de la programación paralela, ofrece una forma de expresar operaciones masivas sobre tensores, delegar ejecución a implementaciones optimizadas y razonar sobre el lugar donde viven los datos.
 
 ## Numba CUDA y PyTorch GPU
 
@@ -356,6 +507,9 @@ Con este marco, el recorrido del libro queda ya completo en su progresión princ
 - Describa un caso en el que una mala elección de `threadsperblock` podría degradar el rendimiento.
 - Explique qué error puede cometerse al medir un kernel si no se sincroniza la GPU antes de registrar el tiempo final.
 - Explique por qué dos kernels correctos pueden rendir de forma muy distinta en una misma GPU.
+- Describa por qué una operación de PyTorch sobre CPU puede aprovechar paralelismo aunque el código Python parezca secuencial.
+- Explique por qué una operación por lotes como `torch.bmm` puede resultar más adecuada que un bucle Python con muchas multiplicaciones pequeñas.
+- Diseñe una medición simple en PyTorch que permita separar tiempo de transferencia y tiempo de cómputo en GPU.
 - Describa qué observaría primero para diagnosticar una implementación GPU correcta que no muestra mejora de rendimiento.
 - Explique qué cambia entre la versión de Sobel sobre tensores en CPU y su ejecución sobre GPU con PyTorch.
 - Justifique en qué tipo de situación Sobel sobre GPU tendría más sentido que Sobel sobre CPU.
